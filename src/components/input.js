@@ -2,6 +2,8 @@ import React from "react";
 
 const Input = (props) => (
   <input
+    onClick={props.onClick}
+    src={props.src}
     className={props.className}
     data-id={props.dataId}
     type={props.type}

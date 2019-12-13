@@ -1,27 +1,10 @@
 import React from "react";
-import { StyleSheet, css } from "aphrodite";
-
-const styles = StyleSheet.create({
-  buttons: {
-    backgroundColor: "#ff9500",
-    ":hover": {
-      backgroundColor: "#444444",
-      color: "#c7c7cc",
-    },
-    color: "white",
-    fontSize: "20px",
-    fontWeight: "bold",
-    padding: "6px",
-    borderRadius: "6px",
-    textAlign: "center",
-    marginTop: "5%",
-  },
-});
 
 const Button = (props) => (
   <button
+    src={props.src}
     onClick={props.onClick}
-    className={css(styles.buttons)}
+    className={props.className}
     data-id={props.dataId}
     type={props.type}
     id={props.id}

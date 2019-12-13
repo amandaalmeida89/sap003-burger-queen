@@ -22,6 +22,20 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     textAlign: "center",
   },
+  buttons: {
+    backgroundColor: "#ff9500",
+    ":hover": {
+      backgroundColor: "#444444",
+      color: "#c7c7cc",
+    },
+    color: "white",
+    fontSize: "20px",
+    fontWeight: "bold",
+    padding: "6px",
+    borderRadius: "6px",
+    textAlign: "center",
+    marginTop: "5%",
+  },
 });
 
 const Bartender = () => {
@@ -33,6 +47,7 @@ const Bartender = () => {
       <form>
         <div className={css(styles.styleMenu)}>
           <Button
+            className={css(styles.buttons)}
             onClick={(e) => {
               setCategory("breakfast");
               e.preventDefault();
@@ -41,6 +56,7 @@ const Bartender = () => {
             title="Café da manhã"
           />
           <Button
+            className={css(styles.buttons)}
             onClick={(e) => {
               setCategory("lunch");
               e.preventDefault();
