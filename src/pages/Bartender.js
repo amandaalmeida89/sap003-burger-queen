@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, css } from "aphrodite";
+import firestore from "../firebase.js";
 import Navigation from "../components/Navigation.js";
 import Button from "../components/Button.js";
 import Input from "../components/Input.js";
@@ -38,8 +39,27 @@ const styles = StyleSheet.create({
   },
 });
 
+const useMenu = (category) => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    firestore
+      .collection("menu")
+      .where("category", "==", category)
+      .onSnapshot((snapshot) => {
+        const newItems = snapshot.docs.map((item) => ({
+          id: item.id,
+          ...item.data(),
+        }));
+        setItems(newItems);
+      });
+  }, [category]);
+  return items;
+};
+
 const Bartender = () => {
   const [category, setCategory] = useState("breakfast");
+  const menu = useMenu(category);
 
   return (
     <div>
@@ -67,7 +87,7 @@ const Bartender = () => {
           <Input className={css(styles.styleInputTable)} id="table" placeholder="Nº Mesa" type="number" />
           <Input className={css(styles.styleInputName)} id="name" placeholder="Nome" type="text" />
         </div>
-        <Menu category={category} />
+        <Menu menu={menu} />
       </form>
     </div>
   );

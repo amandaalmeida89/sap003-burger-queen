@@ -8,10 +8,16 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    marginLeft: "5%",
+    marginBottom: "10%",
   },
   styleLabel: {
     color: "white",
     fontWeight: "bold",
+    marginTop: "10%",
+  },
+  styleInput: {
+    marginTop: "10%",
   },
 });
 
@@ -20,7 +26,7 @@ const MenuItem = (props) => {
 
   return (
     <div className={css(styles.styleDiv)} key={item.id}>
-      <Input src={item.img} type="image" id={item.id} value={item.id} />
+      <Input className={css(styles.styleInput)} src={item.img} type="image" id={item.id} value={item.id} />
       <label className={css(styles.styleLabel)} htmlFor={item.id}>{item.name}</label>
       <label className={css(styles.styleLabel)} htmlFor={item.id}>{item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</label>
     </div>
