@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation.js";
 import Button from "../components/Button.js";
 import Input from "../components/Input.js";
 import Menu from "../components/Menu.js";
+import Order from "../components/Order.js";
 
 const styles = StyleSheet.create({
   styleMenu: {
@@ -36,6 +37,10 @@ const styles = StyleSheet.create({
     borderRadius: "6px",
     textAlign: "center",
     marginTop: "5%",
+    outline: "none",
+  },
+  styleDivMenu: {
+    display: "flex",
   },
 });
 
@@ -59,7 +64,12 @@ const useMenu = (category) => {
 
 const Bartender = () => {
   const [category, setCategory] = useState("breakfast");
-  const menu = useMenu(category);
+  const menuState = useMenu(category);
+  const [orderState, setOrder] = useState([]);
+
+  const addItemToOrder = (item) => {
+    setOrder((orderAntiga) => orderAntiga.concat([item]));
+  };
 
   return (
     <div>
@@ -87,7 +97,15 @@ const Bartender = () => {
           <Input className={css(styles.styleInputTable)} id="table" placeholder="Nº Mesa" type="number" />
           <Input className={css(styles.styleInputName)} id="name" placeholder="Nome" type="text" />
         </div>
-        <Menu menu={menu} />
+        <div className={css(styles.styleDivMenu)}>
+          <Menu
+            menuState={menuState}
+            onItemAdd={addItemToOrder}
+          />
+          <Order
+            orderState={orderState}
+          />
+        </div>
       </form>
     </div>
   );

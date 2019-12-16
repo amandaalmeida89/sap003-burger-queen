@@ -10,10 +10,19 @@ const styles = StyleSheet.create({
 
 
 const Menu = (props) => {
-  const menu = props.menu;
+  const menuState = props.menuState;
   return (
     <div className={css(styles.styleDiv)}>
-      {menu.map((item) => <MenuItem key={item.id} item={item} />)}
+      {menuState.map((item) => (
+        <MenuItem
+          onClick={(e) => {
+            props.onItemAdd(item);
+            e.preventDefault();
+          }}
+          key={item.id}
+          item={item}
+        />
+      ))}
     </div>
   );
 };
