@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     padding: "6px",
     borderRadius: "6px",
+    width: "100px",
     textAlign: "center",
     marginTop: "5%",
     outline: "none",
@@ -43,10 +44,16 @@ const styles = StyleSheet.create({
   styleDivFour: {
     marginBottom: "20%",
   },
+  styleSpan: {
+    color: "white",
+    fontWeight: "bold",
+  },
 });
 
 const Order = (props) => {
   const orderState = props.orderState;
+  const total = orderState.reduce((acc, currentValue) => acc + currentValue.price, 0);
+
   return (
     <div className={css(styles.styleDivOne)}>
       {orderState.map((orderItem) => (
@@ -58,20 +65,26 @@ const Order = (props) => {
             {orderItem.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
           </div>
           <Input
+            onClick={props.remove}
             className={css(styles.styleDivFour)}
             src="/images/trash.png"
-            id="button-send"
+            id={orderItem.id}
             type="image"
           />
         </div>
       ))}
       { orderState.length > 0
         && (
-        <Button
-          className={css(styles.button)}
-          id="button-send"
-          title="Enviar"
-        />
+          <div className={css(styles.styleDivTwo)}>
+            <Button
+              className={css(styles.button)}
+              id="button-send"
+              title="Enviar"
+            />
+            <span className={css(styles.styleSpan)}>
+              {total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+            </span>
+          </div>
         )}
 
     </div>

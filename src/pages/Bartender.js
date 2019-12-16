@@ -68,7 +68,13 @@ const Bartender = () => {
   const [orderState, setOrder] = useState([]);
 
   const addItemToOrder = (item) => {
-    setOrder((orderAntiga) => orderAntiga.concat([item]));
+    setOrder((orderOld) => orderOld.concat([item]));
+  };
+
+  const remove = (e) => {
+    const id = e.currentTarget.id;
+    setOrder((orderOld) => orderOld.filter((el) => el.id !== id));
+    e.preventDefault();
   };
 
   return (
@@ -104,6 +110,7 @@ const Bartender = () => {
           />
           <Order
             orderState={orderState}
+            remove={remove}
           />
         </div>
       </form>
