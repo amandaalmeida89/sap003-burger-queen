@@ -1,7 +1,9 @@
 import React from "react";
+import Navigation from "../components/Navigation.js";
+
 
 const Kitchen = () => (
-  <h1>Cozinha</h1>
+  <Navigation />
 );
 
 export default Kitchen;

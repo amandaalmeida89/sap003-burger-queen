@@ -26,10 +26,14 @@ const goToKitchen = () => {
   window.location = "/kitchen";
 };
 
+const goToBartender = () => {
+  window.location = "/";
+};
+
 const Navigation = () => (
   <div>
     <nav className={css(styles.styleDiv)}>
-      <button className={css(styles.nav)}>Novos Pedidos</button>
+      <button onClick={goToBartender} className={css(styles.nav)}>Novos Pedidos</button>
       <button onClick={goToKitchen} className={css(styles.nav)}>Pedidos Prontos</button>
     </nav>
   </div>

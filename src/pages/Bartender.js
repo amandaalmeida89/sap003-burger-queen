@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, css } from "aphrodite";
+import growl from "growl-alert";
+import "growl-alert/dist/growl-alert.css";
 import firestore from "../firebase.js";
 import Navigation from "../components/Navigation.js";
 import Button from "../components/Button.js";
@@ -17,12 +19,14 @@ const styles = StyleSheet.create({
     fontSize: "18px",
     marginTop: "5%",
     textAlign: "center",
+    borderRadius: "6px",
   },
   styleInputName: {
     width: "30%",
     fontSize: "18px",
     marginTop: "5%",
     textAlign: "center",
+    borderRadius: "6px",
   },
   buttons: {
     backgroundColor: "#ff9500",
@@ -66,15 +70,53 @@ const Bartender = () => {
   const [category, setCategory] = useState("breakfast");
   const menuState = useMenu(category);
   const [orderState, setOrder] = useState([]);
+  const [tableState, setTable] = useState("");
+  const [nameState, setName] = useState("");
 
   const addItemToOrder = (item) => {
-    setOrder((orderOld) => orderOld.concat([item]));
+    if (!orderState.includes(item)) {
+      item.count = 1;
+      setOrder([...orderState, item]);
+    } else {
+      item.count += 1;
+      setOrder([...orderState]);
+    }
   };
 
-  const remove = (e) => {
-    const id = e.currentTarget.id;
-    setOrder((orderOld) => orderOld.filter((el) => el.id !== id));
-    e.preventDefault();
+  const total = orderState.reduce((acc, currValue) => acc + (currValue.price * currValue.count), 0);
+
+  const remove = (item) => {
+    const index = (orderState.indexOf(item));
+    orderState.splice(index, 1);
+    setOrder([...orderState]);
+  };
+
+  const removeAmountOrder = (item) => {
+    if (item.count === 1) {
+      remove(item);
+    } else {
+      item.count -= 1;
+      setOrder([...orderState]);
+    }
+  };
+
+  const createOrder = () => {
+    if (tableState && nameState) {
+      firestore
+        .collection("orders")
+        .add({
+          tableNumber: tableState,
+          name: nameState,
+          items: orderState,
+        })
+        .then(() => {
+          setTable([""]);
+          setName([""]);
+          setOrder([]);
+        });
+    } else {
+      growl.warning("Preencha o número da mesa e nome do cliente");
+    }
   };
 
   return (
@@ -100,8 +142,8 @@ const Bartender = () => {
             id="button-two"
             title="Almoço e Jantar"
           />
-          <Input className={css(styles.styleInputTable)} id="table" placeholder="Nº Mesa" type="number" />
-          <Input className={css(styles.styleInputName)} id="name" placeholder="Nome" type="text" />
+          <Input className={css(styles.styleInputTable)} value={tableState} id="table" placeholder="Nº Mesa" type="number" onChange={(e) => setTable(e.currentTarget.value)} />
+          <Input className={css(styles.styleInputName)} value={nameState} id="name" placeholder="Nome" type="text" onChange={(e) => setName(e.currentTarget.value)} />
         </div>
         <div className={css(styles.styleDivMenu)}>
           <Menu
@@ -111,6 +153,10 @@ const Bartender = () => {
           <Order
             orderState={orderState}
             remove={remove}
+            total={total}
+            removeAmountOrder={removeAmountOrder}
+            onItemAdd={addItemToOrder}
+            createOrder={createOrder}
           />
         </div>
       </form>

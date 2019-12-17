@@ -26,5 +26,6 @@ module.exports = {
     'react/button-has-type': 0,
     'react/destructuring-assignment': 0,
     'react/prop-types':0,
+    'eslint-disable no-param-reassign':0,
    },
 };
