@@ -108,6 +108,7 @@ const Bartender = () => {
           tableNumber: tableState,
           name: nameState,
           items: orderState,
+          addedAt: (new Date()).toLocaleString("pt-BR"),
         })
         .then(() => {
           setTable([""]);

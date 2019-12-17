@@ -6,15 +6,15 @@ import Input from "./Input";
 const styles = StyleSheet.create({
   styleDivOne: {
     width: "50vw",
-    height: "auto",
-    borderLeft: "4px solid white",
+    height: "100vw",
+    borderLeft: "4px solid gray",
     marginLeft: "5%",
     color: "white",
     marginTop: "7%",
     paddingLeft: "10px",
   },
   button: {
-    backgroundColor: "#ff9500",
+    backgroundColor: "rgb(99, 188, 80)",
     ":hover": {
       backgroundColor: "#444444",
       color: "#c7c7cc",
