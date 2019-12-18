@@ -31,11 +31,9 @@ const goToBartender = () => {
 };
 
 const Navigation = () => (
-  <div>
-    <nav className={css(styles.styleDiv)}>
-      <button onClick={goToBartender} className={css(styles.nav)}>Novos Pedidos</button>
-      <button onClick={goToKitchen} className={css(styles.nav)}>Pedidos Prontos</button>
-    </nav>
+  <div className={css(styles.styleDiv)}>
+    <button onClick={goToBartender} className={css(styles.nav)}>Novos Pedidos</button>
+    <button onClick={goToKitchen} className={css(styles.nav)}>Pedidos Prontos</button>
   </div>
 );
 

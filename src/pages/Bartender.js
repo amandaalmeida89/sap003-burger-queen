@@ -48,7 +48,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const useMenu = (category) => {
+const Bartender = () => {
+  const [category, setCategory] = useState("breakfast");
+  const [orderState, setOrder] = useState([]);
+  const [tableState, setTable] = useState("");
+  const [nameState, setName] = useState("");
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -63,15 +67,6 @@ const useMenu = (category) => {
         setItems(newItems);
       });
   }, [category]);
-  return items;
-};
-
-const Bartender = () => {
-  const [category, setCategory] = useState("breakfast");
-  const menuState = useMenu(category);
-  const [orderState, setOrder] = useState([]);
-  const [tableState, setTable] = useState("");
-  const [nameState, setName] = useState("");
 
   const addItemToOrder = (item) => {
     if (!orderState.includes(item)) {
@@ -108,9 +103,11 @@ const Bartender = () => {
           tableNumber: tableState,
           name: nameState,
           items: orderState,
-          addedAt: (new Date()).toLocaleString("pt-BR"),
+          status: "pendente",
+          addedAt: new Date().toLocaleString("pt-BR"),
         })
         .then(() => {
+          growl.success("Pedido enviado à cozinha");
           setTable([""]);
           setName([""]);
           setOrder([]);
@@ -122,45 +119,49 @@ const Bartender = () => {
 
   return (
     <div>
-      <Navigation />
-      <form>
-        <div className={css(styles.styleMenu)}>
-          <Button
-            className={css(styles.buttons)}
-            onClick={(e) => {
-              setCategory("breakfast");
-              e.preventDefault();
-            }}
-            id="button-one"
-            title="Café da manhã"
-          />
-          <Button
-            className={css(styles.buttons)}
-            onClick={(e) => {
-              setCategory("lunch");
-              e.preventDefault();
-            }}
-            id="button-two"
-            title="Almoço e Jantar"
-          />
-          <Input className={css(styles.styleInputTable)} value={tableState} id="table" placeholder="Nº Mesa" type="number" onChange={(e) => setTable(e.currentTarget.value)} />
-          <Input className={css(styles.styleInputName)} value={nameState} id="name" placeholder="Nome" type="text" onChange={(e) => setName(e.currentTarget.value)} />
-        </div>
-        <div className={css(styles.styleDivMenu)}>
-          <Menu
-            menuState={menuState}
-            onItemAdd={addItemToOrder}
-          />
-          <Order
-            orderState={orderState}
-            remove={remove}
-            total={total}
-            removeAmountOrder={removeAmountOrder}
-            onItemAdd={addItemToOrder}
-            createOrder={createOrder}
-          />
-        </div>
-      </form>
+      <nav>
+        <Navigation />
+      </nav>
+      <section>
+        <form>
+          <div className={css(styles.styleMenu)}>
+            <Button
+              className={css(styles.buttons)}
+              onClick={(e) => {
+                setCategory("breakfast");
+                e.preventDefault();
+              }}
+              id="button-one"
+              title="Café da manhã"
+            />
+            <Button
+              className={css(styles.buttons)}
+              onClick={(e) => {
+                setCategory("lunch");
+                e.preventDefault();
+              }}
+              id="button-two"
+              title="Almoço e Jantar"
+            />
+            <Input className={css(styles.styleInputTable)} value={tableState} id="table" placeholder="Nº Mesa" type="number" onChange={(e) => setTable(e.currentTarget.value)} />
+            <Input className={css(styles.styleInputName)} value={nameState} id="name" placeholder="Nome" type="text" onChange={(e) => setName(e.currentTarget.value)} />
+          </div>
+          <div className={css(styles.styleDivMenu)}>
+            <Menu
+              menuState={items}
+              onItemAdd={addItemToOrder}
+            />
+            <Order
+              orderState={orderState}
+              remove={remove}
+              total={total}
+              removeAmountOrder={removeAmountOrder}
+              onItemAdd={addItemToOrder}
+              createOrder={createOrder}
+            />
+          </div>
+        </form>
+      </section>
     </div>
   );
 };

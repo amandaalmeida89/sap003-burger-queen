@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
-import Button from "./Button.js";
 
 const styles = StyleSheet.create({
-  styleCard: {
+  styleCardReady: {
     width: "50vw",
     height: "auto",
     marginTop: "5%",
@@ -12,7 +11,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexWrap: "wrap",
     fontSize: "20px",
-    borderRight: "4px solid gray",
   },
   styleCards: {
     display: "flex",
@@ -51,23 +49,22 @@ const styles = StyleSheet.create({
   },
 });
 
-const Pending = (props) => {
-  const pedingState = props.pedingState;
-
+const Ready = (props) => {
+  const readyState = props.readyState;
   return (
-    <div className={css(styles.styleCard)}>
-      {pedingState.map((pedingItem) => (
-        <div className={css(styles.styleCards)} key={pedingItem.id}>
-          {pedingItem.name}
+    <div className={css(styles.styleCardReady)}>
+      {readyState.map((readyItem) => (
+        <div className={css(styles.styleCards)} key={readyItem.id}>
+          {readyItem.name}
           <div className={css(styles.styleItens)}>
             <span className={css(styles.styleItenTableCount)}>
-              {pedingItem.tableNumber}
+              {readyItem.tableNumber}
             </span>
             <span>
-              {pedingItem.addedAt.slice(10)}
+              {readyItem.addedAt.slice(10) }
             </span>
           </div>
-          {pedingItem.items.map((item) => (
+          {readyItem.items.map((item) => (
             <div className={css(styles.styleItens)} key={item.id}>
               <span className={css(styles.styleItenTableCount)}>
                 {item.count}
@@ -77,18 +74,9 @@ const Pending = (props) => {
               </span>
             </div>
           ))}
-          <Button
-            onClick={(e) => {
-              props.setOrderAsDone(pedingItem);
-              e.preventDefault();
-            }}
-            className={css(styles.button)}
-            id={pedingItem.id}
-            title="Enviar"
-          />
         </div>
       ))}
     </div>
   );
 };
-export default Pending;
+export default Ready;
