@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   styleDivTwo: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     marginRight: "10%",
   },
   styleDivThree: {

@@ -29,7 +29,6 @@ const MenuItem = (props) => {
   return (
     <div className={css(styles.styleDiv)} key={item.id}>
       <Input onClick={props.onClick} className={css(styles.styleInput)} src={item.img} type="image" id={item.id} value={item.id} />
-      {/* <label className={css(styles.styleLabel)} htmlFor={item.id}>{item.subcategory}</label> */}
       <label className={css(styles.styleLabel)} htmlFor={item.id}>{item.name}</label>
       <label className={css(styles.styleLabel)} htmlFor={item.id}>{item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</label>
     </div>

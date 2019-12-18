@@ -59,8 +59,9 @@ const Bartender = () => {
     firestore
       .collection("menu")
       .where("category", "==", category)
-      .onSnapshot((snapshot) => {
-        const newItems = snapshot.docs.map((item) => ({
+      .get()
+      .then((snap) => {
+        const newItems = snap.docs.map((item) => ({
           id: item.id,
           ...item.data(),
         }));
@@ -69,12 +70,14 @@ const Bartender = () => {
   }, [category]);
 
   const addItemToOrder = (item) => {
-    if (!orderState.includes(item)) {
-      item.count = 1;
-      setOrder([...orderState, item]);
+    const itemIndex = orderState.indexOf(item);
+    if (!itemIndex === -1) {
+      setOrder([...orderState, { ...item, count: 1 }]);
     } else {
-      item.count += 1;
-      setOrder([...orderState]);
+      const newOrder = [...orderState];
+      newOrder[itemIndex].count += 1;
+      setOrder(newOrder);
+      console.log(orderState);
     }
   };
 
@@ -87,12 +90,12 @@ const Bartender = () => {
   };
 
   const removeAmountOrder = (item) => {
-    if (item.count === 1) {
-      remove(item);
+    const itemCount = orderState.indexOf(item);
+    if (itemCount.count === 1) {
+      remove(itemCount);
     } else {
-      item.count -= 1;
+      itemCount.count = -1;
       setOrder([...orderState]);
-    }
   };
 
   const createOrder = () => {
@@ -104,7 +107,7 @@ const Bartender = () => {
           name: nameState,
           items: orderState,
           status: "pendente",
-          addedAt: new Date().toLocaleString("pt-BR"),
+          addedAt: new Date(),
         })
         .then(() => {
           growl.success("Pedido enviado à cozinha");

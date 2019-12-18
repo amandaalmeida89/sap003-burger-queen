@@ -4,13 +4,11 @@ import { StyleSheet, css } from "aphrodite";
 const styles = StyleSheet.create({
   styleCardReady: {
     width: "50vw",
-    height: "auto",
     marginTop: "5%",
     color: "white",
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
-    fontSize: "20px",
   },
   styleCards: {
     display: "flex",
@@ -22,14 +20,17 @@ const styles = StyleSheet.create({
     borderRadius: "5px",
     backgroundColor: "gray",
     padding: "6px",
+    fontSize: "20px",
+    fontWeight: "bold",
   },
   styleItens: {
     display: "flex",
-    // alignItems: "center",
-    // justifyContent: "space-between",
+  },
+  styleUl: {
+    padding: "0px",
   },
   styleItenTableCount: {
-    width: "50px",
+    width: "40px",
   },
   button: {
     backgroundColor: "rgb(99, 188, 80)",
@@ -55,25 +56,29 @@ const Ready = (props) => {
     <div className={css(styles.styleCardReady)}>
       {readyState.map((readyItem) => (
         <div className={css(styles.styleCards)} key={readyItem.id}>
-          {readyItem.name}
+          <h1>
+            {readyItem.name}
+          </h1>
           <div className={css(styles.styleItens)}>
-            <span className={css(styles.styleItenTableCount)}>
+            <div className={css(styles.styleItenTableCount)}>
               {readyItem.tableNumber}
-            </span>
-            <span>
-              {readyItem.addedAt.slice(10) }
-            </span>
-          </div>
-          {readyItem.items.map((item) => (
-            <div className={css(styles.styleItens)} key={item.id}>
-              <span className={css(styles.styleItenTableCount)}>
-                {item.count}
-              </span>
-              <span>
-                {item.name}
-              </span>
             </div>
-          ))}
+            <div>
+              {readyItem.addedAt}
+            </div>
+          </div>
+          <ul className={css(styles.styleUl)}>
+            {readyItem.items.map((item) => (
+              <li className={css(styles.styleItens)} key={item.id}>
+                <div className={css(styles.styleItenTableCount)}>
+                  {item.count}
+                </div>
+                <div>
+                  {item.name}
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       ))}
     </div>

@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
-    fontSize: "20px",
     borderRight: "4px solid gray",
   },
   styleCards: {
@@ -24,14 +23,17 @@ const styles = StyleSheet.create({
     borderRadius: "5px",
     backgroundColor: "gray",
     padding: "6px",
+    fontSize: "20px",
+    fontWeight: "bold",
   },
   styleItens: {
     display: "flex",
-    // alignItems: "center",
-    // justifyContent: "space-between",
+  },
+  styleUl: {
+    padding: "0px",
   },
   styleItenTableCount: {
-    width: "50px",
+    width: "40px",
   },
   button: {
     backgroundColor: "rgb(99, 188, 80)",
@@ -58,25 +60,29 @@ const Pending = (props) => {
     <div className={css(styles.styleCard)}>
       {pedingState.map((pedingItem) => (
         <div className={css(styles.styleCards)} key={pedingItem.id}>
-          {pedingItem.name}
+          <h1>
+            {pedingItem.name}
+          </h1>
           <div className={css(styles.styleItens)}>
-            <span className={css(styles.styleItenTableCount)}>
+            <div className={css(styles.styleItenTableCount)}>
               {pedingItem.tableNumber}
-            </span>
-            <span>
-              {pedingItem.addedAt.slice(10)}
-            </span>
-          </div>
-          {pedingItem.items.map((item) => (
-            <div className={css(styles.styleItens)} key={item.id}>
-              <span className={css(styles.styleItenTableCount)}>
-                {item.count}
-              </span>
-              <span>
-                {item.name}
-              </span>
             </div>
-          ))}
+            <div>
+              {pedingItem.addedAt}
+            </div>
+          </div>
+          <ul className={css(styles.styleUl)}>
+            {pedingItem.items.map((item) => (
+              <li className={css(styles.styleItens)} key={item.id}>
+                <div className={css(styles.styleItenTableCount)}>
+                  {item.count}
+                </div>
+                <div>
+                  {item.name}
+                </div>
+              </li>
+            ))}
+          </ul>
           <Button
             onClick={(e) => {
               props.setOrderAsDone(pedingItem);

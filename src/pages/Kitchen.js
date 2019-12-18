@@ -51,7 +51,7 @@ const Kitchen = () => {
       .doc(order.id)
       .update({
         status: "done",
-        time: new Date().toLocaleString("pt-BR"),
+        time: new Date(),
       });
   };
 
