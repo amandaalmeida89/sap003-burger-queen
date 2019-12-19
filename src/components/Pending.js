@@ -64,11 +64,14 @@ const Pending = (props) => {
             {pedingItem.name}
           </h1>
           <div className={css(styles.styleItens)}>
+            <div>
+              Mesa:
+            </div>
             <div className={css(styles.styleItenTableCount)}>
               {pedingItem.tableNumber}
             </div>
             <div>
-              {pedingItem.addedAt}
+              {new Date(pedingItem.addedAt).toLocaleTimeString("pt-BR")}
             </div>
           </div>
           <ul className={css(styles.styleUl)}>

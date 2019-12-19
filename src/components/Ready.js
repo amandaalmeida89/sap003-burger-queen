@@ -52,6 +52,15 @@ const styles = StyleSheet.create({
 
 const Ready = (props) => {
   const readyState = props.readyState;
+
+  const getDiff = (date2, date1) => {
+    const diff = ((date2.getTime() - date1.getTime()) / 1000) / 60;
+    if (Math.abs(Math.round(diff)) > 1) {
+      return `${Math.abs(Math.round(diff))} minutos`;
+    }
+    return `${Math.abs(Math.round(diff))} minuto`;
+  };
+
   return (
     <div className={css(styles.styleCardReady)}>
       {readyState.map((readyItem) => (
@@ -60,11 +69,17 @@ const Ready = (props) => {
             {readyItem.name}
           </h1>
           <div className={css(styles.styleItens)}>
+            <div>
+              Mesa:
+            </div>
             <div className={css(styles.styleItenTableCount)}>
               {readyItem.tableNumber}
             </div>
             <div>
-              {readyItem.addedAt}
+              Preparo:
+            </div>
+            <div>
+              { getDiff(new Date(readyItem.time), new Date(readyItem.addedAt)) }
             </div>
           </div>
           <ul className={css(styles.styleUl)}>
