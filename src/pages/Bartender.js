@@ -70,14 +70,13 @@ const Bartender = () => {
   }, [category]);
 
   const addItemToOrder = (item) => {
-    const itemIndex = orderState.indexOf(item);
-    if (!itemIndex === -1) {
+    const itemIndex = orderState.findIndex((el) => el.id === item.id);
+    if (itemIndex === -1) {
       setOrder([...orderState, { ...item, count: 1 }]);
     } else {
       const newOrder = [...orderState];
       newOrder[itemIndex].count += 1;
       setOrder(newOrder);
-      console.log(orderState);
     }
   };
 
@@ -90,12 +89,14 @@ const Bartender = () => {
   };
 
   const removeAmountOrder = (item) => {
-    const itemCount = orderState.indexOf(item);
+    const itemIndex = orderState.findIndex((el) => el.id === item.id);
+    const itemCount = orderState[itemIndex];
     if (itemCount.count === 1) {
       remove(itemCount);
     } else {
-      itemCount.count = -1;
+      itemCount.count += -1;
       setOrder([...orderState]);
+    }
   };
 
   const createOrder = () => {
@@ -107,7 +108,7 @@ const Bartender = () => {
           name: nameState,
           items: orderState,
           status: "pendente",
-          addedAt: new Date(),
+          addedAt: new Date().getTime(),
         })
         .then(() => {
           growl.success("Pedido enviado à cozinha");
