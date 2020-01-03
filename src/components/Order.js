@@ -5,10 +5,9 @@ import Input from "./Input";
 
 const styles = StyleSheet.create({
   styleDivOne: {
-    width: "50vw",
-    height: "100vw",
+    width: "55vw",
+    height: "auto",
     borderLeft: "4px solid gray",
-    marginLeft: "5%",
     color: "white",
     marginTop: "7%",
     paddingLeft: "10px",
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-around",
-    marginRight: "10%",
+    marginRight: "1%",
   },
   styleDivThree: {
     color: "white",

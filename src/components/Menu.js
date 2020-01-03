@@ -4,7 +4,7 @@ import MenuItem from "./MenuItem.js";
 
 const styles = StyleSheet.create({
   styleDiv: {
-    width: "50vw",
+    width: "45vw",
   },
 });
 

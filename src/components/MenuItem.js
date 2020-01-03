@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    marginLeft: "5%",
-    marginBottom: "10%",
+    padding: "6px",
   },
   styleLabel: {
     color: "white",

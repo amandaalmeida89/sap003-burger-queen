@@ -1,16 +1,14 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
-import Button from "./Button.js";
 
 const styles = StyleSheet.create({
-  styleCard: {
+  styleCardprepared: {
     width: "50vw",
     marginTop: "5%",
-    color: "black",
+    color: "white",
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
-    borderRight: "4px solid gray",
   },
   styleCards: {
     display: "flex",
@@ -20,7 +18,7 @@ const styles = StyleSheet.create({
     marginBottom: "5%",
     border: "1px solid white",
     borderRadius: "5px",
-    backgroundColor: "orange",
+    backgroundColor: "gray",
     padding: "6px",
     fontSize: "20px",
     fontWeight: "bold",
@@ -52,29 +50,40 @@ const styles = StyleSheet.create({
   },
 });
 
-const Pending = (props) => {
-  const pedingState = props.pedingState;
+const Prepared = (props) => {
+  const preparedState = props.preparedState;
+
+  const getDiff = (date2, date1) => {
+    const diff = ((date2.getTime() - date1.getTime()) / 1000) / 60;
+    if (Math.abs(Math.round(diff)) > 1) {
+      return `${Math.abs(Math.round(diff))} minutos`;
+    }
+    return `${Math.abs(Math.round(diff))} minuto`;
+  };
 
   return (
-    <div className={css(styles.styleCard)}>
-      {pedingState.map((pedingItem) => (
-        <div className={css(styles.styleCards)} key={pedingItem.id}>
+    <div className={css(styles.styleCardprepared)}>
+      {preparedState.map((preparedItem) => (
+        <div className={css(styles.styleCards)} key={preparedItem.id}>
           <h1>
-            {pedingItem.name}
+            {preparedItem.name}
           </h1>
           <div className={css(styles.styleItens)}>
             <div>
               Mesa:
             </div>
             <div className={css(styles.styleItenTableCount)}>
-              {pedingItem.tableNumber}
+              {preparedItem.tableNumber}
             </div>
             <div>
-              {new Date(pedingItem.addedAt).toLocaleTimeString("pt-BR")}
+              Preparo:
+            </div>
+            <div>
+              { getDiff(new Date(preparedItem.time), new Date(preparedItem.addedAt)) }
             </div>
           </div>
           <ul className={css(styles.styleUl)}>
-            {pedingItem.items.map((item) => (
+            {preparedItem.items.map((item) => (
               <li className={css(styles.styleItens)} key={item.id}>
                 <div className={css(styles.styleItenTableCount)}>
                   {item.count}
@@ -85,19 +94,9 @@ const Pending = (props) => {
               </li>
             ))}
           </ul>
-          <Button
-            onClick={(e) => {
-              props.setOrderAsDone(pedingItem);
-              e.preventDefault();
-            }}
-            className={css(styles.button)}
-            id={pedingItem.id}
-            title="Enviar"
-          />
-
         </div>
       ))}
     </div>
   );
 };
-export default Pending;
+export default Prepared;

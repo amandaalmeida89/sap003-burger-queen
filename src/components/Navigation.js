@@ -1,10 +1,12 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
+import { Link } from "react-router-dom";
 
 const styles = StyleSheet.create({
   styleDiv: {
     display: "flex",
     justifyContent: "center",
+    textAlign: "center",
   },
   nav: {
     backgroundColor: "#333333",
@@ -16,24 +18,15 @@ const styles = StyleSheet.create({
     fontSize: "35px",
     fontWeight: "bold",
     width: "100%",
-    padding: "6px",
-    border: "none",
+    padding: "10px",
     boxShadow: "0px 3px 10px 2px rgb(0,0,0,0.25)",
   },
 });
 
-const goToKitchen = () => {
-  window.location = "/kitchen";
-};
-
-const goToBartender = () => {
-  window.location = "/";
-};
-
 const Navigation = () => (
   <div className={css(styles.styleDiv)}>
-    <button onClick={goToBartender} className={css(styles.nav)}>Novos Pedidos</button>
-    <button onClick={goToKitchen} className={css(styles.nav)}>Pedidos Prontos</button>
+    <Link to="/" className={css(styles.nav)}>Novos Pedidos</Link>
+    <Link to="Kitchen" className={css(styles.nav)}>Pedidos Prontos</Link>
   </div>
 );
 

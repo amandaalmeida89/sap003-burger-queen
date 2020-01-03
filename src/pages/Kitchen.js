@@ -4,7 +4,7 @@ import { StyleSheet, css } from "aphrodite";
 import Navigation from "../components/Navigation.js";
 import firestore from "../firebase.js";
 import Pending from "../components/Pending.js";
-import Ready from "../components/Ready";
+import Prepared from "../components/ Prepared";
 
 const styles = StyleSheet.create({
   styleDivMenu: {
@@ -65,8 +65,8 @@ const Kitchen = () => {
           pedingState={items}
           setOrderAsDone={setOrderAsDone}
         />
-        <Ready
-          readyState={done}
+        <Prepared
+          preparedState={done}
         />
       </section>
     </div>
