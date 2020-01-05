@@ -46,7 +46,22 @@ const styles = StyleSheet.create({
   styleDivMenu: {
     display: "flex",
   },
+  button: {
+    display: "flex",
+    justifyContent: "flex-end",
+    marginRight: "5%",
+    marginBottom: "5%",
+  },
+  buttonStyle: {
+    fontWeight: "bold",
+    fontSize: "35px",
+    color: "#ff9500",
+  },
 });
+
+const logout = () => {
+  firestore.auth().signOut();
+};
 
 const option = {
   fadeAway: true,
@@ -171,6 +186,15 @@ const Bartender = () => {
           </div>
         </form>
       </section>
+      <footer className={css(styles.button)}>
+        <Button
+          className={css(styles.buttonStyle)}
+          title="Sair"
+          onClick={() => {
+            logout();
+          }}
+        />
+      </footer>
     </div>
   );
 };

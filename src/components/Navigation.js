@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
 
 const Navigation = () => (
   <div className={css(styles.styleDiv)}>
-    <Link to="/" className={css(styles.nav)}>Novos Pedidos</Link>
-    <Link to="Kitchen" className={css(styles.nav)}>Pedidos Prontos</Link>
+    <Link to="/bartender" className={css(styles.nav)}>Novos Pedidos</Link>
+    <Link to="/delivery" className={css(styles.nav)}>Pedidos Prontos</Link>
   </div>
 );
 

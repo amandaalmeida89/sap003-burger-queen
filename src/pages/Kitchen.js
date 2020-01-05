@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
+import Button from "../components/Button";
 import firestore from "../firebase.js";
 import Pending from "../components/Pending.js";
 import Prepared from "../components/ Prepared";
@@ -24,11 +24,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRight: "1px solid gray",
   },
-  link: {
+  button: {
     width: "50vw",
   },
 });
 
+const logout = () => {
+  firestore.auth().signOut();
+};
 
 const Kitchen = () => {
   const [items, setItems] = useState([]);
@@ -77,7 +80,13 @@ const Kitchen = () => {
     <>
       <header className={css(styles.hearder)}>
         <div className={css(styles.h1)}>Cozinha</div>
-        <Link className={css(styles.hearder, styles.link)} to="/">Sair</Link>
+        <Button
+          className={css(styles.button)}
+          title="Sair"
+          onClick={() => {
+            logout();
+          }}
+        />
       </header>
       <section className={css(styles.menu)}>
         <Pending

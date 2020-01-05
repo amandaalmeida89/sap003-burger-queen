@@ -5,7 +5,6 @@ import growl from "growl-alert";
 import { app } from "../firebase.js";
 import Input from "../components/Input.js";
 import Button from "../components/Button";
-import Select from "../components/Select";
 
 const styles = StyleSheet.create({
   img: {
@@ -57,56 +56,43 @@ const option = {
   fadeAwayTimeout: 2000,
 };
 
-const Register = () => {
-  const [nameState, setName] = useState("");
-  const [serviceState, setService] = useState("Salão");
+const Login = () => {
   const [emailState, setEmail] = useState("");
   const [passWordState, setPassword] = useState("");
 
   const history = useHistory();
 
-  const register = () => {
-    if (nameState.length > 0) {
-      app
-        .auth()
-        .createUserWithEmailAndPassword(emailState, passWordState)
-        .then(() => {
-          app.firestore().collection("users")
-            .doc(app.auth().currentUser.uid)
-            .set({
-              name: nameState,
-              service: serviceState,
-              email: emailState,
-              password: passWordState,
-              userId: app.auth().currentUser.uid,
-              addedAt: (new Date()).toLocaleString("pt-BR"),
-            });
-        }).then(() => {
-          if (serviceState === "bartender") {
-            history.push("/bartender");
-            growl.success({ text: "Bem vindo!", ...option });
-          } else {
-            history.push("/kitchen");
-            growl.success({ text: "Bem vindo!", ...option });
-          }
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          if (errorCode === "auth/email-already-in-use") {
-            growl.error({ text: "E-mail já possui uma conta cadastrada!", ...option });
-          } else if (errorCode === "auth/invalid-email") {
-            growl.error({ text: "Formato de email inválido!", ...option });
-          } else if (errorCode === "auth/weak-password") {
-            growl.error({ text: "Senha deve possuir no mínimo 6 caracteres!", ...option });
-          }
-        });
-    } else {
-      growl.warning({
-        text: "Preencha seu nome",
-        ...option,
+  const login = () => {
+    app
+      .auth()
+      .signInWithEmailAndPassword(emailState, passWordState)
+      .then(({ user }) => {
+        app
+          .firestore()
+          .collection("users")
+          .doc(user.uid).get()
+          .then((profile) => {
+            const profileData = profile.data();
+            if (profileData.service === "bartender") {
+              history.push("/bartender");
+              growl.success({ text: "Bem vindo!", ...option });
+            } else {
+              history.push("/kitchen");
+              growl.success({ text: "Bem vindo!", ...option });
+            }
+          });
+      }).catch((error) => {
+        const errorCode = error.code;
+        if (errorCode === "auth/wrong-password") {
+          growl.error({ text: "Senha Incorreta", ...option });
+        } else if (errorCode === "auth/user-not-found") {
+          growl.error({ text: "Email não registrado!", ...option });
+        } else if (errorCode === "auth/invalid-email") {
+          growl.error({ text: "Formato de email inválido", ...option });
+        }
       });
-    }
   };
+
   return (
     <>
       <div className={css(styles.img)}>
@@ -114,25 +100,25 @@ const Register = () => {
       </div>
       <header className={css(styles.header)}>
         <h1>Burguer Queen</h1>
-        <h2>Preencha seus dados e registre-se!</h2>
+        <h2>Preencha seus dados e faça login!</h2>
       </header>
       <form className={css(styles.form)}>
-        <Input className={css(styles.input)} value={nameState} type="text" placeholder="Nome" onChange={(e) => setName(e.currentTarget.value)} />
-        <Select onChange={(e) => setService(e.currentTarget.value)} />
         <Input className={css(styles.input)} value={emailState} type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
         <Input className={css(styles.input)} value={passWordState} type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
         <div>
           <Button
             className={css(styles.button)}
-            title="Voltar"
-            onClick={() => {
-              history.push = ("/");
+            title="Login"
+            onClick={(e) => {
+              login(); e.preventDefault();
             }}
           />
           <Button
             className={css(styles.button)}
             title="Registrar"
-            onClick={(e) => { register(); e.preventDefault(); }}
+            onClick={(e) => {
+              history.push("/register"); e.preventDefault();
+            }}
           />
         </div>
       </form>
@@ -140,5 +126,4 @@ const Register = () => {
 
   );
 };
-
-export default Register;
+export default Login;
