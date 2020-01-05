@@ -1,14 +1,31 @@
-/* eslint-disable no-param-reassign */
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
-import Navigation from "../components/Navigation.js";
 import firestore from "../firebase.js";
 import Pending from "../components/Pending.js";
 import Prepared from "../components/ Prepared";
 
 const styles = StyleSheet.create({
-  styleDivMenu: {
+  menu: {
     display: "flex",
+  },
+  hearder: {
+    display: "flex",
+    justifyContent: "center",
+    boxShadow: "0px 3px 10px 2px rgb(0,0,0,0.25)",
+    fontWeight: "bold",
+    fontSize: "35px",
+    backgroundColor: "#333333",
+    color: "#ff9500",
+  },
+  h1: {
+    width: "50vw",
+    display: "flex",
+    justifyContent: "center",
+    borderRight: "1px solid gray",
+  },
+  link: {
+    width: "50vw",
   },
 });
 
@@ -20,7 +37,7 @@ const Kitchen = () => {
   useEffect(() => {
     firestore
       .collection("orders")
-      .where("status", "==", "pendente")
+      .where("status", "==", "pending")
       .orderBy("addedAt", "asc")
       .onSnapshot((snapshot) => {
         const newItems = snapshot.docs.map((item) => ({
@@ -50,17 +67,19 @@ const Kitchen = () => {
       .collection("orders")
       .doc(order.id)
       .update({
+        delivery: "pending",
         status: "done",
         time: new Date().getTime(),
       });
   };
 
   return (
-    <div>
-      <nav>
-        <Navigation />
-      </nav>
-      <section className={css(styles.styleDivMenu)}>
+    <>
+      <header className={css(styles.hearder)}>
+        <div className={css(styles.h1)}>Cozinha</div>
+        <Link className={css(styles.hearder, styles.link)} to="/">Sair</Link>
+      </header>
+      <section className={css(styles.menu)}>
         <Pending
           pedingState={items}
           setOrderAsDone={setOrderAsDone}
@@ -69,7 +88,7 @@ const Kitchen = () => {
           preparedState={done}
         />
       </section>
-    </div>
+    </>
   );
 };
 

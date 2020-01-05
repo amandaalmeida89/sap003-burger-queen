@@ -48,6 +48,11 @@ const styles = StyleSheet.create({
   },
 });
 
+const option = {
+  fadeAway: true,
+  fadeAwayTimeout: 2000,
+};
+
 const Bartender = () => {
   const [category, setCategory] = useState("breakfast");
   const [orderState, setOrder] = useState([]);
@@ -107,17 +112,17 @@ const Bartender = () => {
           tableNumber: tableState,
           name: nameState,
           items: orderState,
-          status: "pendente",
+          status: "pending",
           addedAt: new Date().getTime(),
         })
         .then(() => {
-          growl.success("Pedido enviado à cozinha");
+          growl.success({ text: "Pedido enviado à cozinha", ...option });
           setTable([""]);
           setName([""]);
           setOrder([]);
         });
     } else {
-      growl.warning("Preencha o número da mesa e nome do cliente");
+      growl.warning({ text: "Preencha o número da mesa e nome do cliente", ...option });
     }
   };
 

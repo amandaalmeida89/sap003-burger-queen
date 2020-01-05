@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     color: "black",
     display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
+    alignItems: "center",
+    flexDirection: "column",
     borderRight: "4px solid gray",
   },
   styleCards: {

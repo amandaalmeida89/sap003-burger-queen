@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     color: "white",
     display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
+    justifyContent: "center",
+    flexWrap: "wrap",
   },
   styleCards: {
     display: "flex",
@@ -50,40 +50,26 @@ const styles = StyleSheet.create({
   },
 });
 
-const Prepared = (props) => {
-  const preparedState = props.preparedState;
-
-  const getDiff = (date2, date1) => {
-    const diff = ((date2.getTime() - date1.getTime()) / 1000) / 60;
-    if (Math.abs(Math.round(diff)) > 1) {
-      return `${Math.abs(Math.round(diff))} minutos`;
-    }
-    return `${Math.abs(Math.round(diff))} minuto`;
-  };
+const Delivered = (props) => {
+  const deliveredState = props.deliveredState;
 
   return (
     <div className={css(styles.styleCardprepared)}>
-      {preparedState.map((preparedItem) => (
-        <div className={css(styles.styleCards)} key={preparedItem.id}>
+      {deliveredState.map((deliveredItem) => (
+        <div className={css(styles.styleCards)} key={deliveredItem.id}>
           <h1>
-            {preparedItem.name}
+            {deliveredItem.name}
           </h1>
           <div className={css(styles.styleItens)}>
             <div>
               Mesa:
             </div>
             <div className={css(styles.styleItenTableCount)}>
-              {preparedItem.tableNumber}
-            </div>
-            <div>
-              Preparo:
-            </div>
-            <div>
-              { getDiff(new Date(preparedItem.time), new Date(preparedItem.addedAt)) }
+              {deliveredItem.tableNumber}
             </div>
           </div>
           <ul className={css(styles.styleUl)}>
-            {preparedItem.items.map((item) => (
+            {deliveredItem.items.map((item) => (
               <li className={css(styles.styleItens)} key={item.id}>
                 <div className={css(styles.styleItenTableCount)}>
                   {item.count}
@@ -99,4 +85,4 @@ const Prepared = (props) => {
     </div>
   );
 };
-export default Prepared;
+export default Delivered;
