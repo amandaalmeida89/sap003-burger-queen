@@ -5,6 +5,7 @@ import growl from "growl-alert";
 import { app } from "../firebase.js";
 import Input from "../components/Input.js";
 import Button from "../components/Button";
+import { useAuth } from "../Auth.js";
 
 const styles = StyleSheet.create({
   img: {
@@ -57,31 +58,26 @@ const option = {
 };
 
 const Login = () => {
+  const { user } = useAuth();
   const [emailState, setEmail] = useState("");
   const [passWordState, setPassword] = useState("");
-
   const history = useHistory();
+
+
+  if (user) {
+    const profileData = user.profileData;
+    if (profileData.service === "bartender") {
+      history.push("/bartender");
+    } else {
+      history.push("/kitchen");
+    }
+  }
 
   const login = () => {
     app
       .auth()
       .signInWithEmailAndPassword(emailState, passWordState)
-      .then(({ user }) => {
-        app
-          .firestore()
-          .collection("users")
-          .doc(user.uid).get()
-          .then((profile) => {
-            const profileData = profile.data();
-            if (profileData.service === "bartender") {
-              history.push("/bartender");
-              growl.success({ text: "Bem vindo!", ...option });
-            } else {
-              history.push("/kitchen");
-              growl.success({ text: "Bem vindo!", ...option });
-            }
-          });
-      }).catch((error) => {
+      .catch((error) => {
         const errorCode = error.code;
         if (errorCode === "auth/wrong-password") {
           growl.error({ text: "Senha Incorreta", ...option });

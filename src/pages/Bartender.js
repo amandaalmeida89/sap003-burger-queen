@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, css } from "aphrodite";
 import growl from "growl-alert";
 import "growl-alert/dist/growl-alert.css";
-import firestore from "../firebase.js";
+import { useHistory } from "react-router-dom";
+import firestore, { app } from "../firebase.js";
 import Navigation from "../components/Navigation.js";
 import Button from "../components/Button.js";
 import Input from "../components/Input.js";
 import Menu from "../components/Menu.js";
 import Order from "../components/Order.js";
+import { useAuth } from "../Auth.js";
 
 const styles = StyleSheet.create({
   styleMenu: {
@@ -59,10 +61,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const logout = () => {
-  firestore.auth().signOut();
-};
-
 const option = {
   fadeAway: true,
   fadeAwayTimeout: 2000,
@@ -74,6 +72,12 @@ const Bartender = () => {
   const [tableState, setTable] = useState("");
   const [nameState, setName] = useState("");
   const [items, setItems] = useState([]);
+  const history = useHistory();
+  const { user } = useAuth();
+
+  if (!user) {
+    history.push("/");
+  }
 
   useEffect(() => {
     firestore
@@ -191,7 +195,7 @@ const Bartender = () => {
           className={css(styles.buttonStyle)}
           title="Sair"
           onClick={() => {
-            logout();
+            app.auth().signOut();
           }}
         />
       </footer>

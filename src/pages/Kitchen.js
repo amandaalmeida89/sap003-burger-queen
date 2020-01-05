@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, css } from "aphrodite";
+import { useHistory } from "react-router-dom";
 import Button from "../components/Button";
-import firestore from "../firebase.js";
+import firestore, { app } from "../firebase.js";
 import Pending from "../components/Pending.js";
 import Prepared from "../components/ Prepared";
+import { useAuth } from "../Auth.js";
+
 
 const styles = StyleSheet.create({
   menu: {
@@ -26,16 +29,21 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "50vw",
+    fontWeight: "bold",
+    fontSize: "35px",
+    color: "#ff9500",
   },
 });
-
-const logout = () => {
-  firestore.auth().signOut();
-};
 
 const Kitchen = () => {
   const [items, setItems] = useState([]);
   const [done, setDoneItems] = useState([]);
+  const history = useHistory();
+  const { user } = useAuth();
+
+  if (!user) {
+    history.push("/");
+  }
 
   useEffect(() => {
     firestore
@@ -84,7 +92,7 @@ const Kitchen = () => {
           className={css(styles.button)}
           title="Sair"
           onClick={() => {
-            logout();
+            app.auth().signOut();
           }}
         />
       </header>
