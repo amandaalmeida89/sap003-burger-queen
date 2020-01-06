@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, css } from "aphrodite";
 import growl from "growl-alert";
 import "growl-alert/dist/growl-alert.css";
-import { useHistory } from "react-router-dom";
 import firestore, { app } from "../firebase.js";
 import Navigation from "../components/Navigation.js";
 import Button from "../components/Button.js";
 import Input from "../components/Input.js";
 import Menu from "../components/Menu.js";
 import Order from "../components/Order.js";
-import { useAuth } from "../Auth.js";
 
 const styles = StyleSheet.create({
   styleMenu: {
@@ -73,12 +71,6 @@ const Bartender = () => {
   const [nameState, setName] = useState("");
   const [breakfastState, setBreakfast] = useState([]);
   const [lunchState, setLunch] = useState([]);
-  const history = useHistory();
-  const { user } = useAuth();
-
-  if (!user) {
-    history.push("/");
-  }
 
   useEffect(() => {
     firestore

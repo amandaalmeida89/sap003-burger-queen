@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, css } from "aphrodite";
-import { useHistory } from "react-router-dom";
 import Button from "../components/Button";
 import firestore, { app } from "../firebase.js";
 import Pending from "../components/Pending.js";
 import Prepared from "../components/ Prepared";
-import { useAuth } from "../Auth.js";
 
 
 const styles = StyleSheet.create({
@@ -38,12 +36,6 @@ const styles = StyleSheet.create({
 const Kitchen = () => {
   const [pending, setPendingItems] = useState([]);
   const [done, setDoneItems] = useState([]);
-  const history = useHistory();
-  const { user } = useAuth();
-
-  if (!user) {
-    history.push("/");
-  }
 
   useEffect(() => {
     firestore

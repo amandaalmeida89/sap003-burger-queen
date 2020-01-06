@@ -24,7 +24,7 @@ const Delivery = () => {
           id: item.id,
           ...item.data(),
         }));
-        setDelivery(newDelivery.filter((elem) => elem.status === "pending"));
+        setDelivery(newDelivery.filter((elem) => elem.delivery === "pending"));
       });
   }, []);
 
@@ -37,7 +37,7 @@ const Delivery = () => {
           id: item.id,
           ...item.data(),
         }));
-        setDeliveredItems(newDelivered.filter((elem) => elem.status === "done"));
+        setDeliveredItems(newDelivered.filter((elem) => elem.delivery === "done"));
       });
   }, []);
 

@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
 import growl from "growl-alert";
-import { app } from "../firebase.js";
+import { auth } from "../firebase.js";
 import Input from "../components/Input.js";
 import Button from "../components/Button";
-import { useAuth } from "../Auth.js";
 
 const styles = StyleSheet.create({
   img: {
@@ -50,6 +49,12 @@ const styles = StyleSheet.create({
     marginTop: "2%",
     outline: "none",
   },
+  div: {
+    width: "16rem",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
 });
 
 const option = {
@@ -58,24 +63,12 @@ const option = {
 };
 
 const Login = () => {
-  const { user } = useAuth();
   const [emailState, setEmail] = useState("");
   const [passWordState, setPassword] = useState("");
   const history = useHistory();
 
-
-  if (user) {
-    const profileData = user.profileData;
-    if (profileData.service === "bartender") {
-      history.push("/bartender");
-    } else {
-      history.push("/kitchen");
-    }
-  }
-
   const login = () => {
-    app
-      .auth()
+    auth
       .signInWithEmailAndPassword(emailState, passWordState)
       .catch((error) => {
         const errorCode = error.code;
@@ -98,26 +91,28 @@ const Login = () => {
         <h1>Burguer Queen</h1>
         <h2>Preencha seus dados e faça login!</h2>
       </header>
-      <form className={css(styles.form)}>
-        <Input className={css(styles.input)} value={emailState} type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
-        <Input className={css(styles.input)} value={passWordState} type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
-        <div>
-          <Button
-            className={css(styles.button)}
-            title="Login"
-            onClick={(e) => {
-              login(); e.preventDefault();
-            }}
-          />
-          <Button
-            className={css(styles.button)}
-            title="Registrar"
-            onClick={(e) => {
-              history.push("/register"); e.preventDefault();
-            }}
-          />
-        </div>
-      </form>
+      <section>
+        <form className={css(styles.form)}>
+          <Input className={css(styles.input)} value={emailState} type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
+          <Input className={css(styles.input)} value={passWordState} type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
+          <div className={css(styles.div)}>
+            <Button
+              className={css(styles.button)}
+              title="Login"
+              onClick={(e) => {
+                login(); e.preventDefault();
+              }}
+            />
+            <Button
+              className={css(styles.button)}
+              title="Registrar"
+              onClick={(e) => {
+                history.push("/register"); e.preventDefault();
+              }}
+            />
+          </div>
+        </form>
+      </section>
     </>
 
   );
