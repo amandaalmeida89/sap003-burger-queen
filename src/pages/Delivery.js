@@ -18,28 +18,26 @@ const Delivery = () => {
   useEffect(() => {
     firestore
       .collection("orders")
-      .where("delivery", "==", "pending")
       .orderBy("addedAt", "asc")
       .onSnapshot((snapshot) => {
         const newDelivery = snapshot.docs.map((item) => ({
           id: item.id,
           ...item.data(),
         }));
-        setDelivery(newDelivery);
+        setDelivery(newDelivery.filter((elem) => elem.status === "pending"));
       });
-  }, [delivery]);
+  }, []);
 
   useEffect(() => {
     firestore
       .collection("orders")
-      .where("delivery", "==", "done")
       .orderBy("addedAt", "asc")
       .onSnapshot((snapshot) => {
         const newDelivered = snapshot.docs.map((item) => ({
           id: item.id,
           ...item.data(),
         }));
-        setDeliveredItems(newDelivered);
+        setDeliveredItems(newDelivered.filter((elem) => elem.status === "done"));
       });
   }, []);
 

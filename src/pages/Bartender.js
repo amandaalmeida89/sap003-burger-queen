@@ -71,7 +71,8 @@ const Bartender = () => {
   const [orderState, setOrder] = useState([]);
   const [tableState, setTable] = useState("");
   const [nameState, setName] = useState("");
-  const [items, setItems] = useState([]);
+  const [breakfastState, setBreakfast] = useState([]);
+  const [lunchState, setLunch] = useState([]);
   const history = useHistory();
   const { user } = useAuth();
 
@@ -82,16 +83,18 @@ const Bartender = () => {
   useEffect(() => {
     firestore
       .collection("menu")
-      .where("category", "==", category)
       .get()
       .then((snap) => {
         const newItems = snap.docs.map((item) => ({
           id: item.id,
           ...item.data(),
         }));
-        setItems(newItems);
+        setBreakfast(newItems.filter((elem) => elem.category === "breakfast"));
+        setLunch(newItems.filter((elem) => elem.category === "lunch"));
       });
-  }, [category]);
+  }, []);
+
+  const categoryItens = category === "lunch" ? lunchState : breakfastState;
 
   const addItemToOrder = (item) => {
     const itemIndex = orderState.findIndex((el) => el.id === item.id);
@@ -176,7 +179,7 @@ const Bartender = () => {
           </div>
           <div className={css(styles.styleDivMenu)}>
             <Menu
-              menuState={items}
+              menuState={categoryItens}
               onItemAdd={addItemToOrder}
             />
             <Order

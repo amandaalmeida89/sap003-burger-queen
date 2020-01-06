@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 });
 
 const Kitchen = () => {
-  const [items, setItems] = useState([]);
+  const [pending, setPendingItems] = useState([]);
   const [done, setDoneItems] = useState([]);
   const history = useHistory();
   const { user } = useAuth();
@@ -48,28 +48,26 @@ const Kitchen = () => {
   useEffect(() => {
     firestore
       .collection("orders")
-      .where("status", "==", "pending")
       .orderBy("addedAt", "asc")
       .onSnapshot((snapshot) => {
         const newItems = snapshot.docs.map((item) => ({
           id: item.id,
           ...item.data(),
         }));
-        setItems(newItems);
+        setPendingItems(newItems.filter((elem) => elem.status === "pending"));
       });
   }, []);
 
   useEffect(() => {
     firestore
       .collection("orders")
-      .where("status", "==", "done")
       .orderBy("addedAt", "asc")
       .onSnapshot((snapshot) => {
         const newItems = snapshot.docs.map((item) => ({
           id: item.id,
           ...item.data(),
         }));
-        setDoneItems(newItems);
+        setDoneItems(newItems.filter((elem) => elem.status === "done"));
       });
   }, []);
 
@@ -98,7 +96,7 @@ const Kitchen = () => {
       </header>
       <section className={css(styles.menu)}>
         <Pending
-          pedingState={items}
+          pedingState={pending}
           setOrderAsDone={setOrderAsDone}
         />
         <Prepared
