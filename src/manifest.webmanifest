@@ -1,0 +1,17 @@
+{
+  "short_name": "Burguer Queen",
+  "name": "Burguer Queen: Que tal um hambúguer hoje?",
+  "description": "Burguer faz pedido de comida",
+  "icons": [
+    {
+      "src": "/public/favicon.jpeg",
+      "type": "image/jpeg",
+      "sizes": "131x192"
+    }
+  ],
+  "start_url": "https://sap003-burger-queen-6ad1a.web.app/",
+  "background_color": "#444444",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "rgb(15, 155, 0)"
+}
