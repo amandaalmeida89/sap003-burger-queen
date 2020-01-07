@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     width: "40px",
   },
   button: {
-    backgroundColor: "rgb(99, 188, 80)",
+    backgroundColor: "rgb(15, 155, 0)",
     ":hover": {
       backgroundColor: "#444444",
       color: "#c7c7cc",
