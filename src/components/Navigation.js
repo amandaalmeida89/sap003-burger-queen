@@ -1,12 +1,18 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { app } from "../firebase.js";
+import Button from "./Button.js";
+
 
 const styles = StyleSheet.create({
   styleDiv: {
     display: "flex",
     justifyContent: "center",
     textAlign: "center",
+    width: "100%",
   },
   nav: {
     backgroundColor: "#333333",
@@ -21,12 +27,27 @@ const styles = StyleSheet.create({
     padding: "10px",
     boxShadow: "0px 3px 10px 2px rgb(0,0,0,0.25)",
   },
+  buttonStyle: {
+    fontSize: "50px",
+    color: "#ff9500",
+    backgroundColor: "#333333",
+    border: "none",
+    boxShadow: "0px 3px 10px 2px rgb(0,0,0,0.25)",
+    padding: "8px",
+  },
 });
 
 const Navigation = () => (
   <div className={css(styles.styleDiv)}>
     <Link to="/bartender" className={css(styles.nav)}>Novos Pedidos</Link>
     <Link to="/delivery" className={css(styles.nav)}>Pedidos Prontos</Link>
+    <Button
+      className={css(styles.buttonStyle)}
+      title={<FontAwesomeIcon icon={faSignOutAlt} />}
+      onClick={() => {
+        app.auth().signOut();
+      }}
+    />
   </div>
 );
 

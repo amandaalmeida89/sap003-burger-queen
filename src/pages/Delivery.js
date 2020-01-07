@@ -52,11 +52,13 @@ const Delivery = () => {
   };
 
   return (
-    <div>
-      <nav>
-        <Navigation />
-      </nav>
-      <section className={css(styles.styleDivMenu)}>
+    <>
+      <header>
+        <nav>
+          <Navigation />
+        </nav>
+      </header>
+      <main className={css(styles.styleDivMenu)}>
         <Ready
           deliveryState={delivery}
           setDeliveryAsDone={setDeliveryAsDone}
@@ -64,8 +66,8 @@ const Delivery = () => {
         <Delivered
           deliveredState={delivered}
         />
-      </section>
-    </div>
+      </main>
+    </>
   );
 };
 

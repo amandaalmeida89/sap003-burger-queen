@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
 import growl from "growl-alert";
+import "growl-alert/dist/growl-alert.css";
 import { auth } from "../firebase.js";
 import Input from "../components/Input.js";
 import Button from "../components/Button";
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     marginBottom: "1%",
   },
   button: {
-    backgroundColor: "rgb(99, 188, 80)",
+    backgroundColor: "rgb(15, 155, 0)",
     ":hover": {
       backgroundColor: "#444444",
       color: "#c7c7cc",
@@ -91,7 +92,7 @@ const Login = () => {
         <h1>Burguer Queen</h1>
         <h2>Preencha seus dados e faça login!</h2>
       </header>
-      <section>
+      <main>
         <form className={css(styles.form)}>
           <Input className={css(styles.input)} value={emailState} type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
           <Input className={css(styles.input)} value={passWordState} type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
@@ -112,7 +113,7 @@ const Login = () => {
             />
           </div>
         </form>
-      </section>
+      </main>
     </>
 
   );

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
 import growl from "growl-alert";
+import "growl-alert/dist/growl-alert.css";
 import { app, auth } from "../firebase.js";
 import Input from "../components/Input.js";
 import Button from "../components/Button";
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     marginBottom: "1%",
   },
   button: {
-    backgroundColor: "rgb(99, 188, 80)",
+    backgroundColor: "rgb(15, 155, 0)",
     ":hover": {
       backgroundColor: "#444444",
       color: "#c7c7cc",
@@ -121,7 +122,7 @@ const Register = () => {
         <h1>Burguer Queen</h1>
         <h2>Preencha seus dados e registre-se!</h2>
       </header>
-      <section>
+      <main>
         <form className={css(styles.form)}>
           <Input className={css(styles.input)} value={nameState} type="text" placeholder="Nome" onChange={(e) => setName(e.currentTarget.value)} />
           <Select onChange={(e) => setService(e.currentTarget.value)} />
@@ -142,7 +143,7 @@ const Register = () => {
             />
           </div>
         </form>
-      </section>
+      </main>
     </>
 
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, css } from "aphrodite";
 import growl from "growl-alert";
 import "growl-alert/dist/growl-alert.css";
-import firestore, { app } from "../firebase.js";
+import firestore from "../firebase.js";
 import Navigation from "../components/Navigation.js";
 import Button from "../components/Button.js";
 import Input from "../components/Input.js";
@@ -45,17 +45,6 @@ const styles = StyleSheet.create({
   },
   styleDivMenu: {
     display: "flex",
-  },
-  button: {
-    display: "flex",
-    justifyContent: "flex-end",
-    marginRight: "5%",
-    marginBottom: "5%",
-  },
-  buttonStyle: {
-    fontWeight: "bold",
-    fontSize: "35px",
-    color: "#ff9500",
   },
 });
 
@@ -141,11 +130,13 @@ const Bartender = () => {
   };
 
   return (
-    <div>
-      <nav>
-        <Navigation />
-      </nav>
-      <section>
+    <>
+      <header>
+        <nav>
+          <Navigation />
+        </nav>
+      </header>
+      <main>
         <form>
           <div className={css(styles.styleMenu)}>
             <Button
@@ -184,17 +175,8 @@ const Bartender = () => {
             />
           </div>
         </form>
-      </section>
-      <footer className={css(styles.button)}>
-        <Button
-          className={css(styles.buttonStyle)}
-          title="Sair"
-          onClick={() => {
-            app.auth().signOut();
-          }}
-        />
-      </footer>
-    </div>
+      </main>
+    </>
   );
 };
 
