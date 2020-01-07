@@ -18,7 +18,7 @@ const Delivery = () => {
   useEffect(() => {
     firestore
       .collection("orders")
-      .orderBy("addedAt", "asc")
+      .orderBy("addedAt", "desc")
       .onSnapshot((snapshot) => {
         const newDelivery = snapshot.docs.map((item) => ({
           id: item.id,
@@ -31,7 +31,7 @@ const Delivery = () => {
   useEffect(() => {
     firestore
       .collection("orders")
-      .orderBy("addedAt", "asc")
+      .orderBy("addedAt", "desc")
       .onSnapshot((snapshot) => {
         const newDelivered = snapshot.docs.map((item) => ({
           id: item.id,
