@@ -9,7 +9,7 @@
       "sizes": "131x192"
     }
   ],
-  "start_url": "https://sap003-burger-queen-6ad1a.web.app/",
+  "start_url": "https://sap003-burger-queen-6ad1a.firebaseapp.com/",
   "background_color": "#444444",
   "display": "standalone",
   "scope": "/",
