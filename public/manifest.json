@@ -4,9 +4,14 @@
   "description": "Burguer faz pedido de comida",
   "icons": [
     {
-      "src": "/public/favicon.jpeg",
+      "src": "favicon.jpeg",
       "type": "image/jpeg",
       "sizes": "192x192"
+    },
+    {
+      "src": "burguer.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "https://sap003-burger-queen-6ad1a.firebaseapp.com/",
