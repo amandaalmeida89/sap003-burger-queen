@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginTop: "2%",
     outline: "none",
   },
-  div: {
+  divButton: {
     width: "16rem",
     display: "flex",
     justifyContent: "space-around",
@@ -96,7 +96,7 @@ const Login = () => {
         <form className={css(styles.form)}>
           <Input className={css(styles.input)} value={emailState} type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
           <Input className={css(styles.input)} value={passWordState} type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
-          <div className={css(styles.div)}>
+          <div className={css(styles.divButton)}>
             <Button
               className={css(styles.button)}
               title="Login"

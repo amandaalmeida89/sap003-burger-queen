@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, css } from "aphrodite";
 
 const styles = StyleSheet.create({
-  styleCardprepared: {
+  cardPrepared: {
     width: "50vw",
     marginTop: "5%",
     color: "white",
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexWrap: "wrap",
   },
-  styleCards: {
+  cards: {
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
     fontSize: "20px",
     fontWeight: "bold",
   },
-  styleItens: {
+  itens: {
     display: "flex",
   },
-  styleUl: {
+  ul: {
     padding: "0px",
   },
-  styleItenTableCount: {
+  itemTableCount: {
     width: "40px",
   },
   button: {
@@ -54,24 +54,24 @@ const Delivered = (props) => {
   const deliveredState = props.deliveredState;
 
   return (
-    <div className={css(styles.styleCardprepared)}>
+    <div className={css(styles.cardPrepared)}>
       {deliveredState.map((deliveredItem) => (
-        <div className={css(styles.styleCards)} key={deliveredItem.id}>
+        <div className={css(styles.cards)} key={deliveredItem.id}>
           <h1>
             {deliveredItem.name}
           </h1>
-          <div className={css(styles.styleItens)}>
+          <div className={css(styles.itens)}>
             <div>
               Mesa:
             </div>
-            <div className={css(styles.styleItenTableCount)}>
+            <div className={css(styles.itenTableCount)}>
               {deliveredItem.tableNumber}
             </div>
           </div>
-          <ul className={css(styles.styleUl)}>
+          <ul className={css(styles.ul)}>
             {deliveredItem.items.map((item) => (
-              <li className={css(styles.styleItens)} key={item.id}>
-                <div className={css(styles.styleItenTableCount)}>
+              <li className={css(styles.itens)} key={item.id}>
+                <div className={css(styles.itemTableCount)}>
                   {item.count}
                 </div>
                 <div>

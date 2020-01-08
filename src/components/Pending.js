@@ -3,7 +3,7 @@ import { StyleSheet, css } from "aphrodite";
 import Button from "./Button.js";
 
 const styles = StyleSheet.create({
-  styleCard: {
+  card: {
     width: "50vw",
     marginTop: "5%",
     color: "black",
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRight: "4px solid gray",
   },
-  styleCards: {
+  cards: {
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
     fontSize: "20px",
     fontWeight: "bold",
   },
-  styleItens: {
+  itens: {
     display: "flex",
   },
-  styleUl: {
+  ul: {
     padding: "0px",
   },
-  styleItenTableCount: {
+  itemTableCount: {
     width: "40px",
   },
   button: {
@@ -56,27 +56,27 @@ const Pending = (props) => {
   const pedingState = props.pedingState;
 
   return (
-    <div className={css(styles.styleCard)}>
+    <div className={css(styles.card)}>
       {pedingState.map((pedingItem) => (
-        <div className={css(styles.styleCards)} key={pedingItem.id}>
+        <div className={css(styles.cards)} key={pedingItem.id}>
           <h1>
             {pedingItem.name}
           </h1>
-          <div className={css(styles.styleItens)}>
+          <div className={css(styles.itens)}>
             <div>
               Mesa:
             </div>
-            <div className={css(styles.styleItenTableCount)}>
+            <div className={css(styles.itemTableCount)}>
               {pedingItem.tableNumber}
             </div>
             <div>
               {new Date(pedingItem.addedAt).toLocaleTimeString("pt-BR")}
             </div>
           </div>
-          <ul className={css(styles.styleUl)}>
+          <ul className={css(styles.ul)}>
             {pedingItem.items.map((item) => (
-              <li className={css(styles.styleItens)} key={item.id}>
-                <div className={css(styles.styleItenTableCount)}>
+              <li className={css(styles.itens)} key={item.id}>
+                <div className={css(styles.itemTableCount)}>
                   {item.count}
                 </div>
                 <div>

@@ -10,18 +10,18 @@ import Menu from "../components/Menu.js";
 import Order from "../components/Order.js";
 
 const styles = StyleSheet.create({
-  styleMenu: {
+  Menu: {
     display: "flex",
     justifyContent: "space-around",
   },
-  styleInputTable: {
+  InputTable: {
     width: "10%",
     fontSize: "18px",
     marginTop: "5%",
     textAlign: "center",
     borderRadius: "6px",
   },
-  styleInputName: {
+  InputName: {
     width: "30%",
     fontSize: "18px",
     marginTop: "5%",
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     outline: "none",
   },
-  styleDivMenu: {
+  DivMenu: {
     display: "flex",
   },
 });
@@ -138,7 +138,7 @@ const Bartender = () => {
       </header>
       <main>
         <form>
-          <div className={css(styles.styleMenu)}>
+          <div className={css(styles.Menu)}>
             <Button
               className={css(styles.buttons)}
               onClick={(e) => {
@@ -157,10 +157,10 @@ const Bartender = () => {
               id="button-two"
               title="Almoço e Jantar"
             />
-            <Input className={css(styles.styleInputTable)} value={tableState} id="table" placeholder="Nº Mesa" type="number" onChange={(e) => setTable(e.currentTarget.value)} />
-            <Input className={css(styles.styleInputName)} value={nameState} id="name" placeholder="Nome" type="text" onChange={(e) => setName(e.currentTarget.value)} />
+            <Input className={css(styles.InputTable)} value={tableState} id="table" placeholder="Nº Mesa" type="number" onChange={(e) => setTable(e.currentTarget.value)} />
+            <Input className={css(styles.InputName)} value={nameState} id="name" placeholder="Nome" type="text" onChange={(e) => setName(e.currentTarget.value)} />
           </div>
-          <div className={css(styles.styleDivMenu)}>
+          <div className={css(styles.DivMenu)}>
             <Menu
               menuState={categoryItens}
               onItemAdd={addItemToOrder}

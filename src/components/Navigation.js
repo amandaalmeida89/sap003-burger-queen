@@ -8,7 +8,7 @@ import Button from "./Button.js";
 
 
 const styles = StyleSheet.create({
-  styleDiv: {
+  divNav: {
     display: "flex",
     justifyContent: "center",
     textAlign: "center",
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     padding: "10px",
     boxShadow: "0px 3px 10px 2px rgb(0,0,0,0.25)",
   },
-  buttonStyle: {
+  button: {
     fontSize: "50px",
     color: "#ff9500",
     backgroundColor: "#333333",
@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
 });
 
 const Navigation = () => (
-  <div className={css(styles.styleDiv)}>
+  <div className={css(styles.divNav)}>
     <Link to="/bartender" className={css(styles.nav)}>Novos Pedidos</Link>
     <Link to="/delivery" className={css(styles.nav)}>Pedidos Prontos</Link>
     <Button
-      className={css(styles.buttonStyle)}
+      className={css(styles.button)}
       title={<FontAwesomeIcon icon={faSignOutAlt} />}
       onClick={() => {
         app.auth().signOut();

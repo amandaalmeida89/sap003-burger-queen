@@ -3,7 +3,7 @@ import { StyleSheet, css } from "aphrodite";
 import MenuItem from "./MenuItem.js";
 
 const styles = StyleSheet.create({
-  styleDiv: {
+  divMenu: {
     width: "45vw",
   },
 });
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 const Menu = (props) => {
   const menuState = props.menuState;
   return (
-    <div className={css(styles.styleDiv)}>
+    <div className={css(styles.divMenu)}>
       {menuState.map((item) => (
         <MenuItem
           onClick={(e) => {

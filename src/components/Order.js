@@ -4,7 +4,7 @@ import Button from "./Button";
 import Input from "./Input";
 
 const styles = StyleSheet.create({
-  styleDivOne: {
+  divOne: {
     width: "55vw",
     height: "auto",
     borderLeft: "4px solid gray",
@@ -28,29 +28,29 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     outline: "none",
   },
-  styleDivTwo: {
+  divTwo: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-around",
     marginRight: "1%",
   },
-  styleDivThree: {
+  divThree: {
     color: "white",
     fontWeight: "bold",
     marginBottom: "20%",
     marginRight: "10%",
   },
-  styleName: {
+  name: {
     width: "100px",
   },
-  styleDivFour: {
+  divFour: {
     marginBottom: "20%",
   },
-  styleSpan: {
+  span: {
     color: "white",
     fontWeight: "bold",
   },
-  styleMinusSum: {
+  minusSum: {
     borderRadius: "6px",
     backgroundColor: "orange",
     fontWeight: "bold",
@@ -64,29 +64,29 @@ const Order = (props) => {
   const total = props.total;
 
   return (
-    <div className={css(styles.styleDivOne)}>
+    <div className={css(styles.divOne)}>
       {orderState.map((orderItem) => (
-        <div className={css(styles.styleDivTwo)} key={orderItem.id}>
-          <div className={css(styles.styleDivThree, styles.styleName)}>
+        <div className={css(styles.divTwo)} key={orderItem.id}>
+          <div className={css(styles.divThree, styles.name)}>
             {orderItem.name}
           </div>
-          <div className={css(styles.styleDivThree)}>
+          <div className={css(styles.divThree)}>
             <Button
               onClick={(e) => {
                 props.removeAmountOrder(orderItem);
                 e.preventDefault();
               }}
-              className={css(styles.styleMinusSum)}
+              className={css(styles.minusSum)}
               id="button-minus"
               title="-"
             />
           </div>
-          <div className={css(styles.styleDivThree)}>
+          <div className={css(styles.divThree)}>
             {orderItem.count}
           </div>
-          <div className={css(styles.styleDivThree)}>
+          <div className={css(styles.divThree)}>
             <Button
-              className={css(styles.styleMinusSum)}
+              className={css(styles.minusSum)}
               onClick={(e) => {
                 props.onItemAdd(orderItem);
                 e.preventDefault();
@@ -95,7 +95,7 @@ const Order = (props) => {
               title="+"
             />
           </div>
-          <div className={css(styles.styleDivThree)}>
+          <div className={css(styles.divThree)}>
             {orderItem.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
           </div>
           <Input
@@ -103,7 +103,7 @@ const Order = (props) => {
               props.remove(orderItem);
               e.preventDefault();
             }}
-            className={css(styles.styleDivFour)}
+            className={css(styles.divFour)}
             src="/images/trash.png"
             id={orderItem.id}
             type="image"
@@ -112,7 +112,7 @@ const Order = (props) => {
       ))}
       { orderState.length > 0
         && (
-          <div className={css(styles.styleDivTwo)}>
+          <div className={css(styles.divTwo)}>
             <Button
               onClick={(e) => {
                 props.createOrder();
@@ -122,7 +122,7 @@ const Order = (props) => {
               id="button-send"
               title="Enviar"
             />
-            <span className={css(styles.styleSpan)}>
+            <span className={css(styles.span)}>
               {total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
             </span>
           </div>

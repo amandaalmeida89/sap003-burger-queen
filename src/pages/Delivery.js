@@ -6,7 +6,7 @@ import Ready from "../components/Ready";
 import Delivered from "../components/Delivered";
 
 const styles = StyleSheet.create({
-  styleDivMenu: {
+  DivMenu: {
     display: "flex",
   },
 });
@@ -58,7 +58,7 @@ const Delivery = () => {
           <Navigation />
         </nav>
       </header>
-      <main className={css(styles.styleDivMenu)}>
+      <main className={css(styles.DivMenu)}>
         <Ready
           deliveryState={delivery}
           setDeliveryAsDone={setDeliveryAsDone}

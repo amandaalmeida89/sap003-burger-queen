@@ -3,7 +3,7 @@ import { StyleSheet, css } from "aphrodite";
 import Button from "./Button.js";
 
 const styles = StyleSheet.create({
-  styleCard: {
+  card: {
     width: "50vw",
     marginTop: "5%",
     color: "black",
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     borderRight: "4px solid gray",
   },
-  styleCards: {
+  cards: {
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
     fontSize: "18px",
     fontWeight: "bold",
   },
-  styleItens: {
+  itens: {
     display: "flex",
   },
-  styleUl: {
+  ul: {
     padding: "0px",
   },
-  styleItenTableCount: {
+  itemTableCount: {
     width: "40px",
   },
   button: {
@@ -56,24 +56,24 @@ const Ready = (props) => {
   const deliveryState = props.deliveryState;
 
   return (
-    <div className={css(styles.styleCard)}>
+    <div className={css(styles.card)}>
       {deliveryState.map((deliveryItem) => (
-        <div className={css(styles.styleCards)} key={deliveryItem.id}>
+        <div className={css(styles.cards)} key={deliveryItem.id}>
           <h1>
             {deliveryItem.name}
           </h1>
-          <div className={css(styles.styleItens)}>
+          <div className={css(styles.itens)}>
             <div>
               Mesa:
             </div>
-            <div className={css(styles.styleItenTableCount)}>
+            <div className={css(styles.itemTableCount)}>
               {deliveryItem.tableNumber}
             </div>
           </div>
-          <ul className={css(styles.styleUl)}>
+          <ul className={css(styles.ul)}>
             {deliveryItem.items.map((item) => (
-              <li className={css(styles.styleItens)} key={item.id}>
-                <div className={css(styles.styleItenTableCount)}>
+              <li className={css(styles.itens)} key={item.id}>
+                <div className={css(styles.itemTableCount)}>
                   {item.count}
                 </div>
                 <div>
