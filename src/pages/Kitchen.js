@@ -48,7 +48,7 @@ const Kitchen = () => {
     firestore
       .collection("orders")
       .orderBy("addedAt", "asc")
-      .onSnapshot((snapshot) => {
+      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
         const newItems = snapshot.docs.map((item) => ({
           id: item.id,
           ...item.data(),

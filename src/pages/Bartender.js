@@ -120,10 +120,10 @@ const Bartender = () => {
         })
         .then(() => {
           growl.success({ text: "Pedido enviado à cozinha", ...option });
-          setTable([""]);
-          setName([""]);
-          setOrder([]);
         });
+      setTable([""]);
+      setName([""]);
+      setOrder([]);
     } else {
       growl.warning({ text: "Preencha o número da mesa e nome do cliente", ...option });
     }
