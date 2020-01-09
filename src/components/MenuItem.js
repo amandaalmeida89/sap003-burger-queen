@@ -13,10 +13,8 @@ const styles = StyleSheet.create({
   label: {
     color: "white",
     fontWeight: "bold",
-    marginTop: "10%",
   },
   input: {
-    marginTop: "10%",
     outline: "none",
   },
 });
