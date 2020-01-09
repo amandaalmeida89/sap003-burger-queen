@@ -4,24 +4,23 @@ import Button from "./Button.js";
 
 const styles = StyleSheet.create({
   card: {
-    width: "50vw",
     marginTop: "5%",
     color: "black",
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
-    borderRight: "4px solid gray",
   },
   cards: {
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-    width: "80%",
+    width: "35%",
     marginBottom: "5%",
     border: "1px solid white",
     borderRadius: "5px",
     backgroundColor: "orange",
     padding: "6px",
+    marginRight: "2%",
     fontSize: "18px",
     fontWeight: "bold",
   },

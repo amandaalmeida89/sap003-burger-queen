@@ -6,7 +6,7 @@
 * [4. Processo de design e Tecnologias](#4-processo-de-design-e-Tecnologias)
 * [5. Contribuição](#5-Contribuição)
 
-# 1. Burger Queen
+## 1. Burger Queen
 
 Interface para realizar pedidos através de um tablet, e enviá-los para a cozinha instantaneamente para que sejam preparados de forma ordenada e eficiente.
 
