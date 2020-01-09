@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 const styles = StyleSheet.create({
   cardPrepared: {
@@ -32,22 +34,6 @@ const styles = StyleSheet.create({
   itemTableCount: {
     width: "40px",
   },
-  button: {
-    backgroundColor: "rgb(15, 155, 0)",
-    ":hover": {
-      backgroundColor: "#444444",
-      color: "#c7c7cc",
-    },
-    color: "white",
-    fontSize: "20px",
-    fontWeight: "bold",
-    padding: "6px",
-    borderRadius: "6px",
-    width: "100px",
-    textAlign: "center",
-    marginTop: "5%",
-    outline: "none",
-  },
 });
 
 const Prepared = (props) => {
@@ -56,9 +42,9 @@ const Prepared = (props) => {
   const getDiff = (date2, date1) => {
     const diff = ((date2.getTime() - date1.getTime()) / 1000) / 60;
     if (Math.abs(Math.round(diff)) > 1) {
-      return `${Math.abs(Math.round(diff))} minutos`;
+      return ` ${Math.abs(Math.round(diff))} minutos `;
     }
-    return `${Math.abs(Math.round(diff))} minuto`;
+    return ` ${Math.abs(Math.round(diff))} minuto `;
   };
 
   return (
@@ -76,9 +62,7 @@ const Prepared = (props) => {
               {preparedItem.tableNumber}
             </div>
             <div>
-              Preparo:
-            </div>
-            <div>
+              <FontAwesomeIcon icon={faClock} />
               { getDiff(new Date(preparedItem.time), new Date(preparedItem.addedAt)) }
             </div>
           </div>
