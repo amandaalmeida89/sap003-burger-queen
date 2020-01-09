@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Índice
 
-## Available Scripts
+* [1. Burguer Queen](#1-Burguer-Queen)
+* [2. Resumo do Projeto](#2-Resumo-do-Projeto)
+* [3. Como Usar](#3-Como-Usar)
+* [4. Processo de design e Tecnologias](#4-processo-de-design-e-Tecnologias)
+* [5. Contribuição](#5-Contribuição)
 
-In the project directory, you can run:
+# 1. Burger Queen
 
-### `yarn start`
+Interface para realizar pedidos através de um tablet, e enviá-los para a cozinha instantaneamente para que sejam preparados de forma ordenada e eficiente.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 2. Resumo do Projeto
 
-### `yarn test`
+A interface deve mostrar os dois menus (café da manhã e restante do dia), cada um com todos os seus produtos. O usuário deve poder escolher que produtos adicionar e a interface deve mostrar o resumo do pedido com o custo total.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A cozinha deverá receber o pedido a ser preparado e envia-lo de volta ao atendente quando o prato estiver pronto, também deverá ter um histórico dos pedidos finalizados.
 
-### `yarn build`
+O Atendente deverá receber de forma instantânea o prato finalizado para a entrega ao cliente, também deverá ter um histórico dos pedidos entregues.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 3. Como Usar
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Realize seu cadastro na aba de Registro, é importante escolher corretamente seu departamento para acessar as páginas.
+Com o cadastro realizado você será direcionado para a tela de Atendimento ou Cozinha, conforme a escolha do departamento quando no registro.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para usuários do Atendimento, será possível escolher os menus para realizar os pedidos, marcando o nome do cliente e mesa. Será mostrado em tempo real o resumo do pedido, podendo aumentar a quantidade ou diminuir, assim como excluir algum item antes do fechamento. Também terá acesso a aba da lista de pedidos prontos para servir, e marcar como entregue.
 
-### `yarn eject`
+## 4. Processo de design e Tecnologias
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+O Processo das escolhas do design seguiu a pesquisa qualitativa por meio de percepções de outras ferramentas já existentes no mercado, assim como todo o processo de escolha de cores.
+Foi utilizado para o design a ferramenta Quant-UX, a princípio o desenho foi conforme o link, [Protótipo - Burguer Queen](https://www.quant-ux.com/#/test.html?h=a2aa10aIYB2bBdqnPlGYoMgqh4neuJVjUUt9abPuNfD44vZwBwAxI2Ov9Viy).
+Mas após a realização do teste de usabilidade, o design do aplicativo web foi teve sucintas modificações conforme o feedback dos usuários.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Tecnologias
+* HTML5
+* JavasScript (ES6)
+* Aphrodite (CSS)
+* React Hooks
+* @fortawesome/react-fontawesome
+* growl-alert
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 5. Contribuição
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Todas as contribuições são bem vindas.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Fork o repositório no GitHub
+Clone o projeto em sua própria máquina
+Instale as ferramentas necessárias para o desenvolvimento: `` `npm install```
+Commit em sua própria branch
+Faça o Push do seu trabalho de volta para o fork
+Envie uma solicitação pull request com observações completas documentando suas alterações
