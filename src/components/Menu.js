@@ -5,6 +5,7 @@ import MenuItem from "./MenuItem.js";
 const styles = StyleSheet.create({
   divMenu: {
     width: "45vw",
+    padding: "8px",
   },
 });
 

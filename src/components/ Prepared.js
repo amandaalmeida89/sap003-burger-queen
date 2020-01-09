@@ -72,7 +72,7 @@ const Prepared = (props) => {
             <div>
               Mesa:
             </div>
-            <div className={css(styles.itenTableCount)}>
+            <div className={css(styles.itemTableCount)}>
               {preparedItem.tableNumber}
             </div>
             <div>
