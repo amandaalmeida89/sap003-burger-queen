@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, css } from "aphrodite";
 import { Modal, Button } from "react-bootstrap";
 import Input from "./Input";
-import ButtonOne from "./Button";
+import ButtonComponent from "./Button";
 
 
 const styles = StyleSheet.create({
@@ -19,14 +19,23 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
     outline: "none",
   },
+  modalBackground: {
+    position: "absolute",
+    backgroundColor: "#000000aa",
+    width: "100%",
+    top: 0,
+    left: 0,
+    height: "100%",
+  },
   modalContent: {
     width: "300px",
     height: "auto",
-    background: "white",
+    backgroundColor: "white",
     borderRadius: "10px",
     padding: "8px",
-    position: "relative",
-    margin: "-600px auto",
+    position: "absolute",
+    top: "30%",
+    left: "40%",
     fontSize: "25px",
     textAlign: "center",
     color: "black",
@@ -53,9 +62,20 @@ const styles = StyleSheet.create({
     display: "flex",
     marginTop: "15%",
   },
+  borderButtons: {
+    borderTop: "1px solid gray",
+    marginTop: "15%",
+  },
+  borderModalBody: {
+    borderTop: "1px solid gray",
+    marginTop: "3%",
+  },
+  titleModal: {
+    fontWeight: "bold",
+  },
   btnClose: {
     color: "white",
-    backgroundColor: "rgb(234, 29, 44)",
+    backgroundColor: "grey",
     fontSize: "22px",
     fontWeight: "bold",
     borderRadius: "6px",
@@ -63,7 +83,7 @@ const styles = StyleSheet.create({
     width: "115px",
     height: "50px",
     marginRight: "5%",
-    marginTop: "15%",
+    marginTop: "5%",
   },
 });
 
@@ -84,58 +104,62 @@ const MenuItem = (props) => {
   }
   return (
     <div className={css(styles.divMenuItem)} key={item.id}>
-      <div id="jumbo-div">
-        <Input
-          className={css(styles.input)}
-          id={item.id}
-          src={item.img}
-          type="image"
-          value={item.id}
-          onClick={(e) => {
-            setOpen(true);
-            e.preventDefault();
-          }}
-        />
-      </div>
+      <Input
+        className={css(styles.input)}
+        id={item.id}
+        src={item.img}
+        type="image"
+        value={item.id}
+        onClick={(e) => {
+          setOpen(true);
+          e.preventDefault();
+        }}
+      />
       <label className={css(styles.label)} htmlFor={item.id}>{item.name}</label>
       <label className={css(styles.label)} htmlFor={item.id}>{item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</label>
       {
         show
           ? (
-            <Modal
-              className={css(styles.modalContent)}
-              size="sm"
-              show={show}
-              onHide={() => setOpen(false)}
-            >
-              <Modal.Body>
-                {item.extras.map((extra) => (
-                  <div className={css(styles.radio)} key={extra}>
-                    <label className={css(styles.labelModal)} htmlFor={extra}>{`${extra} R$ 1,00`}</label>
-                    <input
-                      className={css(styles.inputModal)}
-                      type="radio"
-                      value={extra}
-                      onChange={() => setExtra(extra)}
-                      checked={extra === extras}
-                    />
-                  </div>
-                ))}
-              </Modal.Body>
-              <Modal.Footer>
-                <Button className={css(styles.btnClose)} variant="danger" onClick={() => setOpen(false)}>Fechar</Button>
-                <ButtonOne
-                  className={css(styles.btnAdd)}
-                  onClick={(e) => {
-                    props.onItemAdd(props.item, extras);
-                    setOpen(false);
-                    setExtra("");
-                    e.preventDefault();
-                  }}
-                  title="Adicionar"
-                />
-              </Modal.Footer>
-            </Modal>
+            <div className={css(styles.modalBackground)}>
+              <Modal.Dialog
+                className={css(styles.modalContent)}
+                show={show}
+                onHide={() => setOpen(false)}
+              >
+                <Modal.Header>
+                  <Modal.Title className={css(styles.titleModal)}>
+                    Extras:
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className={css(styles.borderModalBody)}>
+                  {item.extras.map((extra) => (
+                    <div className={css(styles.radio)} key={extra}>
+                      <label className={css(styles.labelModal)} htmlFor={extra}>{`${extra} R$ 1,00`}</label>
+                      <input
+                        className={css(styles.inputModal)}
+                        type="radio"
+                        value={extra}
+                        onChange={() => setExtra(extra)}
+                        checked={extra === extras}
+                      />
+                    </div>
+                  ))}
+                </Modal.Body>
+                <Modal.Footer className={css(styles.borderButtons)}>
+                  <Button className={css(styles.btnClose)} variant="danger" onClick={() => setOpen(false)}>Fechar</Button>
+                  <ButtonComponent
+                    className={css(styles.btnAdd)}
+                    onClick={(e) => {
+                      props.onItemAdd(props.item, extras);
+                      setOpen(false);
+                      setExtra("");
+                      e.preventDefault();
+                    }}
+                    title="Adicionar"
+                  />
+                </Modal.Footer>
+              </Modal.Dialog>
+            </div>
           )
           : ""
       }
