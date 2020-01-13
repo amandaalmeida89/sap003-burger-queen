@@ -77,10 +77,17 @@ const Bartender = () => {
 
   const categoryItens = category === "lunch" ? lunchState : breakfastState;
 
-  const addItemToOrder = (item) => {
-    const itemIndex = orderState.findIndex((el) => el.id === item.id);
+  const addItemToOrder = (item, extra) => {
+    const id = item.id + (extra || "");
+    const itemIndex = orderState.findIndex((el) => el.id === id);
     if (itemIndex === -1) {
-      setOrder([...orderState, { ...item, count: 1 }]);
+      if (extra) {
+        setOrder([...orderState, {
+          ...item, price: (item.price + 1), count: 1, extra, id, name: `${item.name} com ${extra}`,
+        }]);
+      } else {
+        setOrder([...orderState, { ...item, count: 1 }]);
+      }
     } else {
       const newOrder = [...orderState];
       newOrder[itemIndex].count += 1;
@@ -97,7 +104,7 @@ const Bartender = () => {
   };
 
   const removeAmountOrder = (item) => {
-    const itemIndex = orderState.findIndex((el) => el.id === item.id);
+    const itemIndex = orderState.findIndex((el) => el.id === item.id && el.extra === item.extra);
     const itemCount = orderState[itemIndex];
     if (itemCount.count === 1) {
       remove(itemCount);

@@ -5,12 +5,11 @@ import Input from "./Input";
 
 const styles = StyleSheet.create({
   divOne: {
-    width: "55vw",
+    width: "50vw",
     height: "auto",
     borderLeft: "4px solid gray",
     color: "white",
     marginTop: "7%",
-    paddingLeft: "10px",
   },
   button: {
     backgroundColor: "rgb(15, 155, 0)",
@@ -33,23 +32,23 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-around",
-    marginRight: "1%",
   },
   divThree: {
     color: "white",
     fontWeight: "bold",
-    marginBottom: "20%",
-    marginRight: "10%",
+    marginBottom: "10%",
   },
   name: {
     width: "100px",
   },
   divFour: {
-    marginBottom: "20%",
+    marginBottom: "10%",
   },
-  span: {
+  total: {
     color: "white",
     fontWeight: "bold",
+    marginTop: "5%",
+    fontSize: "20px",
   },
   minusSum: {
     borderRadius: "6px",
@@ -111,7 +110,7 @@ const Order = (props) => {
           />
         </div>
       ))}
-      { orderState.length > 0
+      {orderState.length > 0
         && (
           <div className={css(styles.divTwo)}>
             <Button
@@ -123,9 +122,13 @@ const Order = (props) => {
               id="button-send"
               title="Enviar"
             />
-            <span className={css(styles.span)}>
-              {total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
-            </span>
+            <div className={css(styles.total)}>
+              <div>
+                Total:
+                {" "}
+                {total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+              </div>
+            </div>
           </div>
         )}
 

@@ -60,7 +60,7 @@ const Kitchen = () => {
   useEffect(() => {
     firestore
       .collection("orders")
-      .orderBy("addedAt", "asc")
+      .orderBy("addedAt", "desc")
       .onSnapshot((snapshot) => {
         const newItems = snapshot.docs.map((item) => ({
           id: item.id,
