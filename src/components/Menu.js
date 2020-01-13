@@ -4,8 +4,9 @@ import MenuItem from "./MenuItem.js";
 
 const styles = StyleSheet.create({
   divMenu: {
-    width: "45vw",
+    width: "50vw",
     padding: "8px",
+    marginLeft: "1%",
   },
   section: {
     textAlign: "center",
@@ -26,13 +27,13 @@ const Menu = (props) => {
       }}
       key={item.id}
       item={item}
+      onItemAdd={props.onItemAdd}
     />
   );
 
   const hamburguers = menuState.filter((elem) => elem.subcategory === "hamburguer");
   const beverages = menuState.filter((elem) => elem.subcategory === "bebidas");
   const sideDish = menuState.filter((elem) => elem.subcategory === "acompanhamentos");
-  const extras = menuState.filter((elem) => elem.subcategory === "adicionais");
 
   return (
     <div className={css(styles.divMenu)}>
@@ -43,8 +44,6 @@ const Menu = (props) => {
         {beverages.map(renderMenuItem)}
         {sideDish.length > 0 && <h1>Acompanhamentos</h1>}
         {sideDish.map(renderMenuItem)}
-        {extras.length > 0 && <h1>Adicionais</h1>}
-        {extras.map(renderMenuItem)}
         {menuState.filter((elem) => elem.subcategory === undefined).map(renderMenuItem)}
       </section>
     </div>
