@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
   },
   name: {
-    width: "100px",
+    width: "150px",
   },
   divFour: {
     marginBottom: "10%",

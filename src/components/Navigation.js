@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   nav: {
+    textDecoration: "none",
     backgroundColor: "#333333",
     ":hover": {
       backgroundColor: "#444444",

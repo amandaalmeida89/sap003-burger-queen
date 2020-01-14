@@ -10,14 +10,22 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    marginBottom: "10%",
   },
   label: {
     color: "white",
     fontWeight: "bold",
+    fontSize: "20px",
+  },
+  labelItem: {
+    width: "250px",
   },
   input: {
-    marginBottom: "10%",
+    width: "30%",
+    height: "150px",
     outline: "none",
+    backgroundColor: "#FFFAFA",
+    border: "5px solid orange",
   },
   modalBackground: {
     position: "absolute",
@@ -97,7 +105,7 @@ const MenuItem = (props) => {
     return (
       <div className={css(styles.divMenuItem)} key={item.id}>
         <Input onClick={props.onClick} className={css(styles.input)} src={item.img} type="image" id={item.id} value={item.id} />
-        <label className={css(styles.label)} htmlFor={item.id}>{item.name}</label>
+        <label className={css(styles.label, styles.labelItem)} htmlFor={item.id}>{item.name}</label>
         <label className={css(styles.label)} htmlFor={item.id}>{item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</label>
       </div>
     );
@@ -115,7 +123,7 @@ const MenuItem = (props) => {
           e.preventDefault();
         }}
       />
-      <label className={css(styles.label)} htmlFor={item.id}>{item.name}</label>
+      <label className={css(styles.label, styles.labelItem)} htmlFor={item.id}>{item.name}</label>
       <label className={css(styles.label)} htmlFor={item.id}>{item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</label>
       {
         show
