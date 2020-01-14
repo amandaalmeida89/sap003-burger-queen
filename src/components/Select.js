@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
     marginBottom: "1%",
     textAlignLast: "center",
     backgroundColor: "white",
+    "@media (min-width: 1200px)": {
+      width: "25.5%",
+    },
   },
 });
 

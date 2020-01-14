@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     width: "50vw",
     padding: "8px",
     marginLeft: "1%",
+    "@media (min-width: 1200px)": {
+      width: "60vw",
+    },
+    "@media only screen and (min-width: 768px) and (max-width: 979px)": {
+      marginBottom: "30%",
+    },
   },
   section: {
     textAlign: "center",
@@ -18,6 +24,10 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
     marginTop: "13%",
     fontSize: "28px",
+    "@media (min-width: 1200px)": {
+      marginBottom: "5%",
+      marginTop: "7%",
+    },
   },
 });
 

@@ -34,6 +34,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderRadius: "6px",
     marginBottom: "1%",
+    "@media (min-width: 1200px)": {
+      width: "25%",
+    },
   },
   button: {
     backgroundColor: "rgb(15, 155, 0)",

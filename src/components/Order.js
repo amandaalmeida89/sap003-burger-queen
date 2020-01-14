@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     borderLeft: "4px solid gray",
     color: "white",
     marginTop: "7%",
+    "@media (min-width: 1200px)": {
+      width: "40vw",
+    },
   },
   button: {
     backgroundColor: "rgb(15, 155, 0)",
@@ -37,9 +40,15 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     marginBottom: "10%",
+    "@media (min-width: 1200px)": {
+      fontSize: "22px",
+    },
   },
   name: {
     width: "150px",
+    "@media only screen and (min-width: 768px) and (max-width: 979px)": {
+      width: "100px",
+    },
   },
   divFour: {
     marginBottom: "10%",
@@ -49,6 +58,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: "5%",
     fontSize: "20px",
+    "@media only screen and (min-width: 768px) and (max-width: 979px)": {
+      fontSize: "18px",
+      "@media (min-width: 1200px)": {
+        fontSize: "22px",
+      },
+    },
   },
   minusSum: {
     borderRadius: "6px",

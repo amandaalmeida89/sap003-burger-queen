@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: "5%",
     outline: "none",
+    "@media only screen and (min-width: 768px) and (max-width: 979px)": {
+      fontSize: "18px",
+    },
   },
   DivMenu: {
     display: "flex",

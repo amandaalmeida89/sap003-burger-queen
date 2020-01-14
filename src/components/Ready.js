@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
     marginRight: "2%",
     fontSize: "18px",
     fontWeight: "bold",
+    "@media (min-width: 1200px)": {
+      width: "20%",
+      fontSize: "20px",
+    },
   },
   itens: {
     display: "flex",

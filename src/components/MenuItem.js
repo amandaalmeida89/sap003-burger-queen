@@ -11,14 +11,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: "10%",
+    "@media (min-width: 1200px)": {
+      marginBottom: "5%",
+      "@media (min-width: 1200px)": {
+        justifyContent: "space-around",
+      },
+    },
   },
   label: {
     color: "white",
     fontWeight: "bold",
     fontSize: "20px",
+    "@media only screen and (min-width: 768px) and (max-width: 979px)": {
+      fontSize: "18px",
+    },
   },
   labelItem: {
     width: "250px",
+    "@media (min-width: 1200px)": {
+      width: "100%",
+    },
   },
   input: {
     width: "30%",
@@ -26,6 +38,14 @@ const styles = StyleSheet.create({
     outline: "none",
     backgroundColor: "#FFFAFA",
     border: "5px solid orange",
+    "@media only screen and (min-width: 768px) and (max-width: 979px)": {
+      height: "100px",
+    },
+    "@media (min-width: 1200px)": {
+      width: "20%",
+      height: "130px",
+    },
+
   },
   modalBackground: {
     position: "absolute",
@@ -93,6 +113,7 @@ const styles = StyleSheet.create({
     marginRight: "5%",
     marginTop: "5%",
   },
+
 });
 
 

@@ -24,6 +24,11 @@ const styles = StyleSheet.create({
     padding: "6px",
     fontSize: "18px",
     fontWeight: "bold",
+    "@media (min-width: 1200px)": {
+      width: "45%",
+      padding: "15px",
+      fontSize: "20px",
+    },
   },
   itens: {
     display: "flex",
