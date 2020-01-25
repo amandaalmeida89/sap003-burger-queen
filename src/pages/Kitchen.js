@@ -81,6 +81,14 @@ const Kitchen = () => {
       });
   };
 
+  const getDiff = (date2, date1) => {
+    const diff = ((date2.getTime() - date1.getTime()) / 1000) / 60;
+    if (Math.abs(Math.round(diff)) > 1) {
+      return ` ${Math.abs(Math.round(diff))} minutos `;
+    }
+    return ` ${Math.abs(Math.round(diff))} minuto `;
+  };
+
   return (
     <>
       <header className={css(styles.hearder)}>
@@ -100,6 +108,7 @@ const Kitchen = () => {
         />
         <Prepared
           preparedState={done}
+          getDiff={getDiff}
         />
       </main>
     </>

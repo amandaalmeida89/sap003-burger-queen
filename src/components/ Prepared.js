@@ -44,14 +44,6 @@ const styles = StyleSheet.create({
 const Prepared = (props) => {
   const preparedState = props.preparedState;
 
-  const getDiff = (date2, date1) => {
-    const diff = ((date2.getTime() - date1.getTime()) / 1000) / 60;
-    if (Math.abs(Math.round(diff)) > 1) {
-      return ` ${Math.abs(Math.round(diff))} minutos `;
-    }
-    return ` ${Math.abs(Math.round(diff))} minuto `;
-  };
-
   return (
     <div className={css(styles.cardPrepared)}>
       {preparedState.map((preparedItem) => (
@@ -68,7 +60,7 @@ const Prepared = (props) => {
             </div>
             <div>
               <FontAwesomeIcon icon={faClock} />
-              { getDiff(new Date(preparedItem.time), new Date(preparedItem.addedAt)) }
+              { props.getDiff(new Date(preparedItem.time), new Date(preparedItem.addedAt)) }
             </div>
           </div>
           <ul className={css(styles.ul)}>
