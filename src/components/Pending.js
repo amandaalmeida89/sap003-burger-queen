@@ -62,9 +62,9 @@ const Pending = (props) => {
   const pedingState = props.pedingState;
 
   return (
-    <div className={css(styles.card)}>
+    <main className={css(styles.card)}>
       {pedingState.map((pedingItem) => (
-        <div className={css(styles.cards)} key={pedingItem.id}>
+        <section className={css(styles.cards)} key={pedingItem.id}>
           <h1>
             {pedingItem.name}
           </h1>
@@ -101,9 +101,9 @@ const Pending = (props) => {
             title="Enviar"
           />
 
-        </div>
+        </section>
       ))}
-    </div>
+    </main>
   );
 };
 export default Pending;

@@ -168,7 +168,7 @@ const Bartender = () => {
               title="Almoço e Jantar"
             />
             <Input className={css(styles.InputTable)} value={tableState} id="table" placeholder="Nº Mesa" type="number" onChange={(e) => setTable(e.currentTarget.value)} />
-            <Input className={css(styles.InputName)} value={nameState} id="name" placeholder="Nome" type="text" onChange={(e) => setName(e.currentTarget.value)} />
+            <Input className={css(styles.InputName)} maxLength="10" value={nameState} id="name" placeholder="Nome" type="text" onChange={(e) => setName(e.currentTarget.value)} />
           </div>
           <div className={css(styles.DivMenu)}>
             <Menu

@@ -79,9 +79,9 @@ const Order = (props) => {
   const total = props.total;
 
   return (
-    <div className={css(styles.divOne)}>
+    <main className={css(styles.divOne)}>
       {orderState.map((orderItem) => (
-        <div className={css(styles.divTwo)} key={orderItem.id}>
+        <section className={css(styles.divTwo)} key={orderItem.id}>
           <div className={css(styles.divThree, styles.name)}>
             {orderItem.name}
           </div>
@@ -123,7 +123,7 @@ const Order = (props) => {
             id={orderItem.id}
             type="image"
           />
-        </div>
+        </section>
       ))}
       {orderState.length > 0
         && (
@@ -147,7 +147,7 @@ const Order = (props) => {
           </div>
         )}
 
-    </div>
+    </main>
   );
 };
 export default Order;

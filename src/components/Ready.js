@@ -60,9 +60,9 @@ const Ready = (props) => {
   const deliveryState = props.deliveryState;
 
   return (
-    <div className={css(styles.card)}>
+    <main className={css(styles.card)}>
       {deliveryState.map((deliveryItem) => (
-        <div className={css(styles.cards)} key={deliveryItem.id}>
+        <section className={css(styles.cards)} key={deliveryItem.id}>
           <h1>
             {deliveryItem.name}
           </h1>
@@ -95,9 +95,9 @@ const Ready = (props) => {
             id={deliveryItem.id}
             title="Entregar"
           />
-        </div>
+        </section>
       ))}
-    </div>
+    </main>
   );
 };
 

@@ -2,6 +2,7 @@ import React from "react";
 
 const Input = (props) => (
   <input
+    maxLength={props.maxLength}
     onChange={props.onChange}
     onClick={props.onClick}
     src={props.src}

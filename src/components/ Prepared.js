@@ -45,9 +45,9 @@ const Prepared = (props) => {
   const preparedState = props.preparedState;
 
   return (
-    <div className={css(styles.cardPrepared)}>
+    <main className={css(styles.cardPrepared)}>
       {preparedState.map((preparedItem) => (
-        <div className={css(styles.cards)} key={preparedItem.id}>
+        <section className={css(styles.cards)} key={preparedItem.id}>
           <h1>
             {preparedItem.name}
           </h1>
@@ -75,9 +75,9 @@ const Prepared = (props) => {
               </li>
             ))}
           </ul>
-        </div>
+        </section>
       ))}
-    </div>
+    </main>
   );
 };
 export default Prepared;

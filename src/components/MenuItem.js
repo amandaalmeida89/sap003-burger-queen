@@ -124,15 +124,15 @@ const MenuItem = (props) => {
 
   if (item.subcategory !== "hamburguer") {
     return (
-      <div className={css(styles.divMenuItem)} key={item.id}>
+      <section className={css(styles.divMenuItem)} key={item.id}>
         <Input onClick={props.onClick} className={css(styles.input)} src={item.img} type="image" id={item.id} value={item.id} />
         <label className={css(styles.label, styles.labelItem)} htmlFor={item.id}>{item.name}</label>
         <label className={css(styles.label)} htmlFor={item.id}>{item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</label>
-      </div>
+      </section>
     );
   }
   return (
-    <div className={css(styles.divMenuItem)} key={item.id}>
+    <section className={css(styles.divMenuItem)} key={item.id}>
       <Input
         className={css(styles.input)}
         id={item.id}
@@ -192,7 +192,7 @@ const MenuItem = (props) => {
           )
           : ""
       }
-    </div>
+    </section>
   );
 };
 

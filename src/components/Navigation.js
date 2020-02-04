@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 });
 
 const Navigation = () => (
-  <div className={css(styles.divNav)}>
+  <nav className={css(styles.divNav)}>
     <Link to="/bartender" className={css(styles.nav)}>Novos Pedidos</Link>
     <Link to="/delivery" className={css(styles.nav)}>Pedidos Prontos</Link>
     <Button
@@ -49,7 +49,7 @@ const Navigation = () => (
         app.auth().signOut();
       }}
     />
-  </div>
+  </nav>
 );
 
 export default Navigation;
